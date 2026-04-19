@@ -1,6 +1,7 @@
 *.pyc
 __pycache__/
 *.json
+!pred_test_v2.json
 *.log
 run/*
 !run/20260416_194859_COnP/
