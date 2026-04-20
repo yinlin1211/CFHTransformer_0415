@@ -391,12 +391,24 @@ class TFTransformer(nn.Module):
 # 完整 CFT 模型（v6）
 # ═════════════════════════════════════════════════════════════════════════════
 
+class CQTNormalize(nn.Module):
+    """Normalize CQT dB spectrogram to zero mean, unit variance."""
+    def __init__(self, cqt_mean: float = -65.0, cqt_std: float = 18.0):
+        super().__init__()
+        self.mean = cqt_mean
+        self.std = cqt_std
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return (x - self.mean) / self.std
+
+
 class CFT_v6(nn.Module):
     """
     CFT 论文严格对齐版（v6）。
 
     数据流：
       x: (B, 288, T)
+      → CQTNormalize → normalized x
       → HarmonicTokenizer → S: (B, T, 48, H=128)
       → 循环 M 次：FHTransformer → HTTransformer → TFTransformer
       → mean(dim=-1) → (B, T, 48)  [GAP 沿 H 轴]
@@ -429,6 +441,11 @@ class CFT_v6(nn.Module):
             f"H={self.H} 必须能被 nhead_ht={self.nhead_ht} 整除"
         assert self.num_pitches % self.nhead_tf == 0, \
             f"num_pitches={self.num_pitches} 必须能被 nhead_tf={self.nhead_tf} 整除"
+
+        # CQT normalization: zero-mean, unit-variance
+        cqt_mean = m.get('cqt_mean', -65.0)
+        cqt_std = m.get('cqt_std', 18.0)
+        self.cqt_norm = CQTNormalize(cqt_mean, cqt_std)
 
         # Tokenization（论文对齐：连续大核 3/5/7，dilation=1）
         self.tokenizer = HarmonicTokenizer(
@@ -474,6 +491,9 @@ class CFT_v6(nn.Module):
         x: (B, F=288, T)
         返回: onset, frame, offset 各 (B, T, num_pitches=48)
         """
+        # 0. Normalize CQT input
+        x = self.cqt_norm(x)
+
         # 1. Tokenization → S: (B, T, 48, H)
         S = self.tokenizer(x)
 
@@ -502,15 +522,19 @@ class CFT_v6(nn.Module):
 class CFTLoss(nn.Module):
     def __init__(self, onset_weight: float = 1.0,
                  frame_weight: float = 1.0,
-                 offset_weight: float = 1.0):
+                 offset_weight: float = 1.0,
+                 onset_pos_weight: float = 5.0):
         super().__init__()
         self.onset_weight  = onset_weight
         self.frame_weight  = frame_weight
         self.offset_weight = offset_weight
+        self.onset_pos_weight = onset_pos_weight
 
     def forward(self, onset_pred, frame_pred, offset_pred,
                 onset_label, frame_label, offset_label):
-        onset_loss  = F_func.binary_cross_entropy_with_logits(onset_pred, onset_label)
+        onset_loss  = F_func.binary_cross_entropy_with_logits(
+            onset_pred, onset_label,
+            pos_weight=torch.tensor(self.onset_pos_weight, device=onset_pred.device))
         frame_loss  = F_func.binary_cross_entropy_with_logits(frame_pred, frame_label)
         offset_loss = F_func.binary_cross_entropy_with_logits(offset_pred, offset_label)
         total = (self.onset_weight  * onset_loss +

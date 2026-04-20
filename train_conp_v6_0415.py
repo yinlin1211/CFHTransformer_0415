@@ -381,7 +381,7 @@ def validate_full_song(model, val_dataset, criterion, device, hop_length, sample
 
 def find_best_threshold(model, val_dataset, criterion, device, hop_length, sample_rate,
                         logger, gt_annotations=None):
-    n_search = min(10, len(val_dataset))
+    n_search = min(30, len(val_dataset))
     best_conp = 0.0
     best_ot, best_ft = 0.3, 0.3
 
@@ -423,8 +423,8 @@ def find_best_threshold(model, val_dataset, criterion, device, hop_length, sampl
                 )
             preds.append((frame_sig, onset_sig, ref_intervals, ref_pitches))
 
-    onset_thresholds = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50]
-    frame_thresholds = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35]
+    onset_thresholds = [0.05, 0.08, 0.10, 0.12, 0.15, 0.18, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50]
+    frame_thresholds = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40]
 
     for ot in onset_thresholds:
         for ft in frame_thresholds:
@@ -524,11 +524,12 @@ def main():
     if scaler is not None:
         logger.info("Mixed precision (AMP) enabled")
 
-    # 损失函数（论文公式1：均等权重 BCE）
+    # 损失函数（论文公式1 + onset正样本加权修复类别不平衡）
     criterion = CFTLoss(
         onset_weight=config['loss']['onset_weight'],
         frame_weight=config['loss']['frame_weight'],
         offset_weight=config['loss']['offset_weight'],
+        onset_pos_weight=config['loss'].get('onset_pos_weight', 1.0),
     ).to(device)
 
     # 优化器（论文 Section 3.3：Adam, lr=3e-4）
