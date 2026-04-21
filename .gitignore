@@ -2,6 +2,7 @@
 __pycache__/
 *.json
 !pred_test_v7.json
+!data/MIR-ST500_corrected.json
 run/*
 !run/v7_best/
 run/v7_best/*
