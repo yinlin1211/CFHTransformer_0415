@@ -523,12 +523,16 @@ class CFTLoss(nn.Module):
     def __init__(self, onset_weight: float = 1.0,
                  frame_weight: float = 1.0,
                  offset_weight: float = 1.0,
-                 onset_pos_weight: float = 5.0):
+                 onset_pos_weight: float = 5.0,
+                 frame_pos_weight: float = 1.0,
+                 offset_pos_weight: float = 1.0):
         super().__init__()
         self.onset_weight  = onset_weight
         self.frame_weight  = frame_weight
         self.offset_weight = offset_weight
         self.onset_pos_weight = onset_pos_weight
+        self.frame_pos_weight = frame_pos_weight
+        self.offset_pos_weight = offset_pos_weight
 
     def forward(self, onset_pred, frame_pred, offset_pred,
                 onset_label, frame_label, offset_label):

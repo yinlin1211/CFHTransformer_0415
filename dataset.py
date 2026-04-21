@@ -25,7 +25,7 @@ NUM_PITCHES = MIDI_MAX - MIDI_MIN + 1  # 48
 
 
 class MIR_ST500_Dataset(Dataset):
-    def __init__(self, config, split="train"):
+    def __init__(self, config, split="train", max_songs=None):
         self.config = config
         self.split = split
         self.cqt_cache_dir = Path(config["data"]["cqt_cache_dir"])
@@ -40,15 +40,18 @@ class MIR_ST500_Dataset(Dataset):
 
         split_file = self.splits_dir / f"{split}.txt"
         with open(split_file, "r") as f:
-            self.file_list = [line.strip() for line in f if line.strip()]
+            file_list = [line.strip() for line in f if line.strip()]
+
+        if max_songs is not None:
+            file_list = file_list[:max_songs]
 
         # 过滤掉没有缓存文件的歌曲
         valid = []
-        for sid in self.file_list:
+        for sid in file_list:
             if (self.cqt_cache_dir / f"{sid}.npy").exists():
                 valid.append(sid)
-        if len(valid) < len(self.file_list):
-            print(f"Warning: {len(self.file_list) - len(valid)} songs missing CQT cache in {split} split")
+        if len(valid) < len(file_list):
+            print(f"Warning: {len(file_list) - len(valid)} songs missing CQT cache in {split} split")
         self.file_list = valid
 
         if split == "train":
@@ -59,9 +62,13 @@ class MIR_ST500_Dataset(Dataset):
         为训练集构建 (song_id, start_frame) 索引。
         每首歌按 segment_frames//2 的步长切片（50%重叠），
         确保每个片段至少包含1个音符。
+        支持 extreme_pitch_oversample: 含极端音高片段的额外采样倍数。
         """
         self._train_index = []
         stride = self.segment_frames // 2
+        oversample = self.config.get("data", {}).get("extreme_pitch_oversample", 0)
+        LOW_THRESH = 50   # MIDI < 50 为低音
+        HIGH_THRESH = 75  # MIDI > 75 为高音
 
         for sid in self.file_list:
             cqt_path = self.cqt_cache_dir / f"{sid}.npy"
@@ -72,6 +79,7 @@ class MIR_ST500_Dataset(Dataset):
             notes = self.annotations.get(sid, [])
             frame_time = self.hop_length / self.sample_rate
             note_frames = set()
+            extreme_pitch_frames = set()
             for note in notes:
                 midi = int(note[2])
                 if not (MIDI_MIN <= midi <= MIDI_MAX):
@@ -80,6 +88,8 @@ class MIR_ST500_Dataset(Dataset):
                 f_off = int(round(float(note[1]) / frame_time))
                 for f in range(f_on, min(f_off + 1, num_frames)):
                     note_frames.add(f)
+                    if midi < LOW_THRESH or midi > HIGH_THRESH:
+                        extreme_pitch_frames.add(f)
 
             if num_frames < self.segment_frames:
                 self._train_index.append((sid, 0))
@@ -90,6 +100,11 @@ class MIR_ST500_Dataset(Dataset):
                 segment_has_note = any(start <= f < end for f in note_frames)
                 if segment_has_note:
                     self._train_index.append((sid, start))
+                    if oversample > 0:
+                        has_extreme = any(start <= f < end for f in extreme_pitch_frames)
+                        if has_extreme:
+                            for _ in range(oversample):
+                                self._train_index.append((sid, start))
                 else:
                     # 保留约 15% 的纯静音片段作为负样本，提升模型对背景噪声的鲁棒性
                     if random.random() < 0.15:

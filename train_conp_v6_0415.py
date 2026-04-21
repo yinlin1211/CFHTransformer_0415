@@ -500,7 +500,9 @@ def main():
     # 数据集
     train_dataset = MIR_ST500_Dataset(config, split='train')
     val_dataset = MIR_ST500_Dataset(config, split='val')
-    logger.info(f"Train samples: {len(train_dataset)}, Val songs: {len(val_dataset)}")
+    test_dataset = MIR_ST500_Dataset(config, split='test')
+    test_monitor_dataset = MIR_ST500_Dataset(config, split='test', max_songs=50)
+    logger.info(f"Train samples: {len(train_dataset)}, Val songs: {len(val_dataset)}, Test songs: {len(test_dataset)}")
 
     train_loader = DataLoader(
         train_dataset,
@@ -524,12 +526,14 @@ def main():
     if scaler is not None:
         logger.info("Mixed precision (AMP) enabled")
 
-    # 损失函数（论文公式1 + onset正样本加权修复类别不平衡）
+    # 损失函数（论文公式1 + 正样本加权修复类别不平衡）
     criterion = CFTLoss(
         onset_weight=config['loss']['onset_weight'],
         frame_weight=config['loss']['frame_weight'],
         offset_weight=config['loss']['offset_weight'],
         onset_pos_weight=config['loss'].get('onset_pos_weight', 1.0),
+        frame_pos_weight=config['loss'].get('frame_pos_weight', 1.0),
+        offset_pos_weight=config['loss'].get('offset_pos_weight', 1.0),
     ).to(device)
 
     # 优化器（论文 Section 3.3：Adam, lr=3e-4）
@@ -644,6 +648,7 @@ def main():
             best_conp_f1 = conp_f1
             ckpt['best_conp_f1'] = best_conp_f1
             torch.save(ckpt, save_dir / 'best_model.pt')
+            torch.save(ckpt, save_dir / f'best_model_epoch{epoch:04d}_COnP{best_conp_f1:.4f}.pt')
             logger.info(f"  -> Best model saved! COnP_f1={best_conp_f1:.4f}")
 
         if epoch % config['training']['save_every'] == 0:
@@ -662,6 +667,19 @@ def main():
                     f"{conpoff_f1:.6f}\t"
                     f"{lr:.2e}\n"
                 )
+
+        # 每 50 个 epoch 用 50 首测试集样本做监控（不调参）
+        if epoch % 50 == 0 or epoch == 1:
+            test_mon_loss, test_con, test_conp, test_conpoff, _, _ = validate_full_song(
+                model, test_monitor_dataset, criterion, device, hop_length, sample_rate,
+                onset_thresh=best_onset_thresh, frame_thresh=best_frame_thresh,
+                gt_annotations=gt_annotations
+            )
+            logger.info(
+                f"  [TEST MONITOR 50] COn_f1={test_con:.4f} | "
+                f"COnP_f1={test_conp:.4f} | "
+                f"COnPOff_f1={test_conpoff:.4f}"
+            )
 
     if writer:
         writer.close()

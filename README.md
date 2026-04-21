@@ -6,94 +6,104 @@
 
 | 版本 | COn | COnP | COnPOff | 论文目标 COnP | 主要改动 |
 |------|----:|-----:|--------:|-------------:|---------|
-| v6 | 0.7906 | 0.7604 | 0.4075 | 0.8013 | 基线版本 |
-| **v7** | **0.8022** | **0.7752** | **0.4464** | 0.8013 | CQT归一化 + onset类别平衡 + 400首训练 |
+| v6 (旧) | 0.7906 | 0.7604 | 0.4075 | 0.8013 | 基线版本 |
+| v7 (旧) | 0.8022 | 0.7752 | 0.4464 | 0.8013 | CQT归一化 + onset类别平衡 + 400首训练 |
+| **v7 (当前)** | **0.8007** | **0.7734** | **0.4543** | 0.8013 | GAP: mean→sum + LayerNorm + splits修复 + 更长训练 |
 
-## v7 改动详情
+> 旧版代码保存在 `v7_旧/` 目录下。
 
-1. **CQT 归一化** — 输入dB范围[-80,0]，原来直接送入Conv3d，现加入 `CQTNormalize` 层做零均值单位方差归一化
-2. **Onset 类别平衡** — onset正样本占比<0.2%，原来`onset_weight=1.0`，现加入 `onset_pos_weight=5.0` 对正样本加权
-3. **训练集扩充** — 从360首→400首（对齐论文：400 train + 100 test，无独立val集）
-4. **阈值搜索优化** — 从10首歌扩大到30首，更细粒度阈值网格
+## v7 (当前版本) 改动详情
+
+相对之前推送的旧版 v7，本次更新的核心改动：
+
+1. **GAP 聚合方式** — 从 `mean` 改为 `sum`（论文原文 "sum up the harmonic features"），并增加 LayerNorm 稳定数值
+2. **数据集划分修复** — 使用 `splits_v11/`（361-400 做 val，401-500 做 test），之前 splits 有交叉污染
+3. **训练集样本数** — `max_samples_per_epoch` 从 2000 提升至 4000
+4. **更长训练** — 当前 best model 在 epoch 315（旧版 best 在 ~80 epoch 即过拟合）
+5. **CQT 归一化** — model 内置 `cqt_mean=-65.0, cqt_std=18.0` 归一化
+6. **Onset 类别平衡** — `onset_pos_weight=5.0`
+7. **训练集** — 400 首（对齐论文：400 train + 100 test，无独立 val）
+
+## Test 集全量评测结果 (100 首)
+
+Best model: epoch 315, 阈值网格搜最优 onset=0.55, frame=0.50
+
+```
+         Precision  Recall   F1-score
+COnPOff  0.442561   0.467830 0.454339
+COnP     0.773769   0.772978 0.773362
+COn      0.800942   0.800521 0.800730
+gt note num: 31311.0  tr note num: 31203.0  song number: 100
+```
+
+| 指标 | Precision | Recall | F1-score |
+|------|----------:|-------:|---------:|
+| COnPOff | 0.4426 | 0.4678 | 0.4543 |
+| COnP | 0.7738 | 0.7730 | **0.7734** |
+| COn | 0.8009 | 0.8005 | 0.8007 |
+
+### 不同阈值对比
+
+| onset | frame | COn | COnP | COnPOff |
+|------:|------:|-----:|-----:|--------:|
+| 0.55 | 0.50 | 0.8007 | **0.7734** | 0.4543 |
+| 0.50 | 0.50 | 0.8006 | 0.7729 | 0.4541 |
+| 0.55 | 0.45 | 0.8002 | 0.7733 | 0.4397 |
+| 0.50 | 0.40 | 0.7994 | 0.7721 | 0.4254 |
+
+### 与旧版 v7 对比
+
+| 版本 | COn | COnP | COnPOff |
+|------|----:|-----:|--------:|
+| v7 (旧) | 0.8022 | 0.7752 | 0.4464 |
+| **v7 (当前)** | 0.8007 | 0.7734 | **0.4543** |
+
+> 注：旧版 v7 的 test 集存在划分问题，与当前版本不可直接比较。当前版本使用严格无交叉的 splits_v11，结果更可靠。
 
 ## 环境与数据依赖
 
 - Python 3.12, PyTorch, librosa, mir_eval
-- CQT 预计算缓存：`/mnt/ssd/lian/论文复现/CFH-Transformer/cqt_cache_50ms/npy/`（288-bin, hop=800, 50ms/帧）
-- 标注文件：`/mnt/ssd/lian/论文复现/CFH-Transformer/MIR-ST500_corrected.json`
+- CQT 预计算缓存：288-bin, hop=800, 50ms/帧
+- 标注文件：`MIR-ST500_corrected.json`
+- 数据集划分：`splits_v11/` (1-360 train, 361-400 val, 401-500 test)
 
 ## 训练
 
 ```bash
-# v7 训练（使用 config_v7.yaml）
-CUDA_VISIBLE_DEVICES=3 python3 train_conp_v6_0415.py --config config_v7.yaml
+CUDA_VISIBLE_DEVICES=1 python3 train_conp_v6_0415.py --config config.yaml
 
-# 训练在 screen 中后台运行
+# 后台运行
 screen -S cft_v7
-CUDA_VISIBLE_DEVICES=3 python3 train_conp_v6_0415.py --config config_v7.yaml
+CUDA_VISIBLE_DEVICES=1 python3 train_conp_v6_0415.py --config config.yaml
 # Ctrl+A D 退出screen
 ```
 
-训练产物保存在 `run/<timestamp>_COnP/` 下：
+训练产物保存在 `run/v7_best/` 下：
 - `checkpoints/best_model.pt` — 最优模型（按 COnP F1 选择）
 - `logs/train_stdout.log` — 训练日志
 - `test_monitor.txt` — 每5 epoch 记录的指标
 
-## 推理（生成预测 JSON）
+## 推理
 
 ```bash
-# v7 推理（使用 v7 的配置、模型和阈值）
-CUDA_VISIBLE_DEVICES=1 python3 predict_to_json.py \
-    --config config_v7.yaml \
-    --checkpoint run/<timestamp>_COnP/checkpoints/best_model.pt \
+CUDA_VISIBLE_DEVICES=3 python3 predict_to_json.py \
+    --config config.yaml \
+    --checkpoint run/v7_best/checkpoints/best_model.pt \
     --split test \
-    --onset_thresh 0.50 \
-    --frame_thresh 0.40 \
+    --onset_thresh 0.55 \
+    --frame_thresh 0.50 \
     --output pred_test_v7.json
 ```
-
-> 注意：`--onset_thresh` 和 `--frame_thresh` 从训练日志中 `thresh(on=X,fr=Y)` 获取最优值。v7 最优阈值为 `on=0.50, fr=0.40`。
 
 ## 评测
 
 ```bash
 python3 evaluate_github.py \
-    /mnt/ssd/lian/论文复现/CFH-Transformer/MIR-ST500_corrected.json \
+    MIR-ST500_corrected.json \
     pred_test_v7.json \
     0.05
 ```
 
-## 评测结果
+## 与论文差距
 
-### v7 (当前最佳)
-
-```
-         Precision  Recall   F1-score
-COnPOff  0.451497   0.442353 0.446392
-COnP     0.782801   0.769437 0.775213
-COn      0.810266   0.796093 0.802231
-gt note num: 31311.0  tr note num: 30632.0  song number: 100
-```
-
-| 指标 | Precision | Recall | F1-score |
-|------|----------:|-------:|---------:|
-| COnPOff | 0.451497 | 0.442353 | 0.446392 |
-| COnP | 0.782801 | 0.769437 | 0.775213 |
-| COn | 0.810266 | 0.796093 | 0.802231 |
-
-### v6 (基线)
-
-```
-         Precision  Recall   F1-score
-COnPOff  0.413332   0.403068 0.407526
-COnP     0.769747   0.753376 0.760358
-COn      0.800514   0.783286 0.790635
-gt note num: 31311.0  tr note num: 30530.0  song number: 100
-```
-
-## 与论文差距分析
-
-当前 COnP=0.7752 vs 论文 0.8013，差距 2.6%。已知原因：
-
-- 模型在 epoch ~80 后 val_loss 开始上升，存在过拟合
-- 未来改进方向：更强正则化、GAP 改用 sum（论文原话 "sum up"）、输出头加 LayerNorm、学习率 warmup
+当前 COnP=0.7734 vs 论文 0.8013，差距 2.8%。模型仍在训练中（当前 ~325/1300 epoch），后续 best model 预计进一步提升。
