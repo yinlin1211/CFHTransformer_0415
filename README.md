@@ -1,6 +1,6 @@
 # CFHTransformer_0415
 
-本仓库复现论文 *"Cycle Frequency-Harmonic-Time Transformer for Note-Level Singing Voice Transcription"* (ICME 2024)，并持续优化以逼近论文报告的指标。
+本仓库复现相关论文，并持续优化以逼近论文报告的指标。
 
 ## 本地项目路径
 
