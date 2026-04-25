@@ -1,0 +1,65 @@
+# CFT 当前 baseline 配置文件
+# 当前配置说明：
+#   1. train=1-400，val=361-400 仅作训练内监控，test=401-500
+#   2. onset_pos_weight=5.0 修复严重的类别不平衡
+#   3. CQT 归一化（model 内置）
+#   4. 更多训练数据/更长训练
+#
+# 论文 Section 3.3 明确说明的超参数：
+#   - batch_size: 16
+#   - optimizer: Adam（不是 AdamW）
+#   - learning_rate: 3e-4
+#   - 输入音频重采样至 16 kHz
+#   - 288-bin CQT（G1~F7，72 semitones × 4 bins/semitone）
+#   - kernel size: (4, 3/5/7, 3) ∈ (octave, pitch_class, time)
+#   - 6 octaves
+#   - 每个 Transformer 只用 1 个 encoder layer
+#   - 训练集：MIR-ST500 前 400 首；本仓库额外用 361-400 做训练内 val
+
+data:
+  audio_dir: '/mnt/ssd/lian/论文复现/CFH-Transformer/vocal_mp3/'
+  label_path: './data/MIR-ST500_corrected.json'
+  splits_dir: './splits_v11/'
+  cqt_cache_dir: '/mnt/ssd/lian/论文复现/CFH-Transformer/cqt_cache_50ms/npy/'
+  sample_rate: 16000
+  segment_frames: 256
+  max_samples_per_epoch: 4000
+
+audio:
+  hop_length: 800
+  cqt_bins: 288
+  bins_per_octave: 48
+  n_octaves: 6
+  fmin: 48.9994
+
+model:
+  h_dim: 128
+  conv_channels: 32
+  num_cycles: 2
+  num_transformer_layers: 1
+  nhead_fh: 8
+  nhead_ht: 8
+  nhead_tf: 6
+  dim_feedforward: 512
+  dropout: 0.1
+  num_pitches: 48
+  midi_min: 36
+  cqt_mean: -65.0
+  cqt_std: 18.0
+
+training:
+  batch_size: 16
+  num_workers: 4
+  learning_rate: 0.0003
+  epochs: 1300
+  run_dir: './run'
+  save_every: 50
+  grad_clip: 1.0
+  warmup_epochs: 0
+  threshold_metric: COnPOff
+
+loss:
+  onset_weight: 1.0
+  offset_weight: 1.0
+  frame_weight: 1.0
+  onset_pos_weight: 5.0
