@@ -1,4 +1,4 @@
-# CFHTransformer Baseline
+# CFHTransformer_v11_0425
 
 当前仓库整理的是 `run/20260422_201016_COnP` 这次实验对应的代码、结果和独立后处理阈值搜索流程。
 

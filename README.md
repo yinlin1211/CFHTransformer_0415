@@ -1,4 +1,4 @@
-# CFHTransformer Baseline
+# CFHTransformer_v11_0425
 
 当前仓库中最新整理的实验版本位于 `v11/`。下面的说明沿用 `v11/README.md` 的内容，除非特别说明，文中的路径都相对于 `v11/`。
 
