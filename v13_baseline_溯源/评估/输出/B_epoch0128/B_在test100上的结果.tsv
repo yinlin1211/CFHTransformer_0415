@@ -1,0 +1,2 @@
+criterion	onset_thresh	frame_thresh	offset_thresh	COn_f1	COnP_f1	COnPOff_f1	COn_plus_COnP	sum_all
+test_with_val_selected_offset	0.40	0.45	0.15	0.802667829	0.775409316	0.588178931	1.578077145	2.166256076

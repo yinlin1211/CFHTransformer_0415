@@ -1,0 +1,882 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1777317024.207126  219114 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1777317024.273545  219114 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1777317025.536140  219114 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+/home/mozhuoru/.local/lib/python3.12/site-packages/pandas/core/computation/expressions.py:22: UserWarning: Pandas requires version '2.10.2' or newer of 'numexpr' (version '2.9.0' currently installed).
+  from pandas.core.computation.check import NUMEXPR_INSTALLED
+/home/mozhuoru/.local/lib/python3.12/site-packages/pandas/core/arrays/masked.py:56: UserWarning: Pandas requires version '1.4.2' or newer of 'bottleneck' (version '1.3.5' currently installed).
+  from pandas.core import (
+2026-04-28 03:10:26 [INFO] Run directory: run/20260428_031026_COnP
+2026-04-28 03:10:26 [INFO] Device: cuda
+2026-04-28 03:10:26 [INFO] Config: {'data': {'audio_dir': '/mnt/ssd/lian/论文复现/CFH-Transformer/vocal_mp3/', 'label_path': '/mnt/ssd/lian/论文复现/CFH-Transformer/MIR-ST500_corrected.json', 'splits_dir': '/mnt/ssd/lian/给claudecode/v6_0415/splits_v11/', 'cqt_cache_dir': '/mnt/ssd/lian/论文复现/CFH-Transformer/cqt_cache_50ms/npy/', 'sample_rate': 16000, 'segment_frames': 256, 'max_samples_per_epoch': 4000}, 'audio': {'hop_length': 800, 'cqt_bins': 288, 'bins_per_octave': 48, 'n_octaves': 6, 'fmin': 48.9994}, 'model': {'h_dim': 128, 'conv_channels': 32, 'num_cycles': 2, 'num_transformer_layers': 1, 'nhead_fh': 8, 'nhead_ht': 8, 'nhead_tf': 6, 'dim_feedforward': 512, 'dropout': 0.1, 'num_pitches': 48, 'midi_min': 36, 'cqt_mean': -65.0, 'cqt_std': 18.0}, 'training': {'batch_size': 16, 'num_workers': 4, 'learning_rate': 0.0003, 'epochs': 1300, 'run_dir': './run', 'save_every': 50, 'grad_clip': 1.0, 'warmup_epochs': 0}, 'loss': {'onset_weight': 1.0, 'offset_weight': 1.0, 'frame_weight': 1.0, 'onset_pos_weight': 5.0}}
+2026-04-28 03:10:26 [INFO] ============================================================
+2026-04-28 03:10:26 [INFO] CFT v6_0415 — train_conp.py (best model: COnP F1)
+2026-04-28 03:10:26 [INFO] ============================================================
+2026-04-28 03:10:27 [INFO] Loaded GT annotations from /mnt/ssd/lian/论文复现/CFH-Transformer/MIR-ST500_corrected.json
+2026-04-28 03:10:29 [INFO] Train samples: 13545, Val songs: 40, Test songs: 100, Test monitor songs: 100
+/home/mozhuoru/.local/lib/python3.12/site-packages/torch/nn/modules/transformer.py:379: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+2026-04-28 03:10:29 [INFO] Model parameters: 3,460,176
+2026-04-28 03:10:29 [INFO] Tokenization: continuous kernels [3,5,7] (paper-aligned, no dilation)
+/mnt/ssd/lian/给claudecode/v13溯回/v10_baseline_最后验证/train_conp.py:519: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler() if device.type == 'cuda' else None
+2026-04-28 03:10:29 [INFO] Mixed precision (AMP) enabled
+2026-04-28 03:10:30 [INFO] Scheduler: CosineAnnealingLR (no warmup, T_max=1300)
+2026-04-28 03:10:30 [INFO] Max batches per epoch: 250
+/mnt/ssd/lian/给claudecode/v13溯回/v10_baseline_最后验证/train_conp.py:216: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():
+2026-04-28 03:10:58 [INFO] Epoch 1 [83/250] loss=0.1278 onset=0.0473 frame=0.0665 offset=0.0140
+2026-04-28 03:11:25 [INFO] Epoch 1 [166/250] loss=0.1106 onset=0.0410 frame=0.0580 offset=0.0117
+2026-04-28 03:11:52 [INFO] Epoch 1 [249/250] loss=0.0907 onset=0.0342 frame=0.0461 offset=0.0104
+2026-04-28 03:14:03 [INFO]   Threshold search: best on=0.50, fr=0.15, COnP_f1=0.1351
+2026-04-28 03:14:13 [INFO] Epoch 1/1300 | train_loss=0.3003 | val_loss=0.0784 | COn_f1=0.3305 | COnP_f1=0.1327 | COnPOff_f1=0.0357 | sig_onset=0.0064 sig_frame=0.0120 | thresh(on=0.50,fr=0.15) | lr=3.00e-04
+2026-04-28 03:14:13 [INFO]   -> Best model saved! COnP_f1=0.1327
+2026-04-28 03:14:40 [INFO]   [TEST MONITOR FULL TEST:periodic_40] COn_f1=0.3256 | COnP_f1=0.1366 | COnPOff_f1=0.0369
+2026-04-28 03:15:07 [INFO] Epoch 2 [83/250] loss=0.0636 onset=0.0263 frame=0.0294 offset=0.0079
+2026-04-28 03:15:34 [INFO] Epoch 2 [166/250] loss=0.0738 onset=0.0324 frame=0.0311 offset=0.0102
+2026-04-28 03:16:01 [INFO] Epoch 2 [249/250] loss=0.0436 onset=0.0192 frame=0.0180 offset=0.0064
+2026-04-28 03:16:11 [INFO] Epoch 2/1300 | train_loss=0.0724 | val_loss=0.0525 | COn_f1=0.3499 | COnP_f1=0.1837 | COnPOff_f1=0.0560 | sig_onset=0.0055 sig_frame=0.0146 | thresh(on=0.50,fr=0.15) | lr=3.00e-04
+2026-04-28 03:16:11 [INFO]   -> Best model saved! COnP_f1=0.1837
+2026-04-28 03:16:39 [INFO] Epoch 3 [83/250] loss=0.0571 onset=0.0254 frame=0.0235 offset=0.0082
+2026-04-28 03:17:05 [INFO] Epoch 3 [166/250] loss=0.0510 onset=0.0215 frame=0.0227 offset=0.0067
+2026-04-28 03:17:32 [INFO] Epoch 3 [249/250] loss=0.0500 onset=0.0221 frame=0.0202 offset=0.0077
+2026-04-28 03:17:43 [INFO] Epoch 3/1300 | train_loss=0.0564 | val_loss=0.0463 | COn_f1=0.4395 | COnP_f1=0.2684 | COnPOff_f1=0.0964 | sig_onset=0.0061 sig_frame=0.0148 | thresh(on=0.50,fr=0.15) | lr=3.00e-04
+2026-04-28 03:17:43 [INFO]   -> Best model saved! COnP_f1=0.2684
+2026-04-28 03:18:10 [INFO] Epoch 4 [83/250] loss=0.0466 onset=0.0209 frame=0.0190 offset=0.0068
+2026-04-28 03:18:37 [INFO] Epoch 4 [166/250] loss=0.0546 onset=0.0248 frame=0.0223 offset=0.0075
+2026-04-28 03:19:04 [INFO] Epoch 4 [249/250] loss=0.0459 onset=0.0202 frame=0.0186 offset=0.0071
+2026-04-28 03:19:15 [INFO] Epoch 4/1300 | train_loss=0.0511 | val_loss=0.0434 | COn_f1=0.4592 | COnP_f1=0.2967 | COnPOff_f1=0.1046 | sig_onset=0.0050 sig_frame=0.0137 | thresh(on=0.50,fr=0.15) | lr=3.00e-04
+2026-04-28 03:19:15 [INFO]   -> Best model saved! COnP_f1=0.2967
+2026-04-28 03:19:43 [INFO] Epoch 5 [83/250] loss=0.0570 onset=0.0264 frame=0.0225 offset=0.0081
+2026-04-28 03:20:10 [INFO] Epoch 5 [166/250] loss=0.0427 onset=0.0185 frame=0.0182 offset=0.0060
+2026-04-28 03:20:36 [INFO] Epoch 5 [249/250] loss=0.0371 onset=0.0167 frame=0.0145 offset=0.0059
+2026-04-28 03:23:10 [INFO]   Threshold search: best on=0.30, fr=0.40, COnP_f1=0.4005
+2026-04-28 03:23:21 [INFO] Epoch 5/1300 | train_loss=0.0486 | val_loss=0.0419 | COn_f1=0.5421 | COnP_f1=0.4016 | COnPOff_f1=0.1995 | sig_onset=0.0061 sig_frame=0.0142 | thresh(on=0.30,fr=0.40) | lr=3.00e-04
+2026-04-28 03:23:21 [INFO]   -> Best model saved! COnP_f1=0.4016
+2026-04-28 03:23:48 [INFO] Epoch 6 [83/250] loss=0.0415 onset=0.0179 frame=0.0173 offset=0.0063
+2026-04-28 03:24:15 [INFO] Epoch 6 [166/250] loss=0.0457 onset=0.0200 frame=0.0196 offset=0.0062
+2026-04-28 03:24:42 [INFO] Epoch 6 [249/250] loss=0.0417 onset=0.0178 frame=0.0179 offset=0.0060
+2026-04-28 03:24:53 [INFO] Epoch 6/1300 | train_loss=0.0470 | val_loss=0.0406 | COn_f1=0.5538 | COnP_f1=0.4190 | COnPOff_f1=0.2166 | sig_onset=0.0063 sig_frame=0.0136 | thresh(on=0.30,fr=0.40) | lr=3.00e-04
+2026-04-28 03:24:53 [INFO]   -> Best model saved! COnP_f1=0.4190
+2026-04-28 03:25:20 [INFO] Epoch 7 [83/250] loss=0.0489 onset=0.0219 frame=0.0198 offset=0.0073
+2026-04-28 03:25:47 [INFO] Epoch 7 [166/250] loss=0.0468 onset=0.0212 frame=0.0187 offset=0.0070
+2026-04-28 03:26:14 [INFO] Epoch 7 [249/250] loss=0.0365 onset=0.0161 frame=0.0144 offset=0.0060
+2026-04-28 03:26:25 [INFO] Epoch 7/1300 | train_loss=0.0456 | val_loss=0.0397 | COn_f1=0.5560 | COnP_f1=0.4236 | COnPOff_f1=0.2140 | sig_onset=0.0064 sig_frame=0.0141 | thresh(on=0.30,fr=0.40) | lr=3.00e-04
+2026-04-28 03:26:25 [INFO]   -> Best model saved! COnP_f1=0.4236
+2026-04-28 03:26:52 [INFO] Epoch 8 [83/250] loss=0.0463 onset=0.0200 frame=0.0186 offset=0.0077
+2026-04-28 03:27:19 [INFO] Epoch 8 [166/250] loss=0.0518 onset=0.0225 frame=0.0217 offset=0.0076
+2026-04-28 03:27:46 [INFO] Epoch 8 [249/250] loss=0.0434 onset=0.0196 frame=0.0172 offset=0.0066
+2026-04-28 03:27:56 [INFO] Epoch 8/1300 | train_loss=0.0449 | val_loss=0.0387 | COn_f1=0.5955 | COnP_f1=0.4619 | COnPOff_f1=0.2420 | sig_onset=0.0045 sig_frame=0.0128 | thresh(on=0.30,fr=0.40) | lr=3.00e-04
+2026-04-28 03:27:57 [INFO]   -> Best model saved! COnP_f1=0.4619
+2026-04-28 03:28:24 [INFO] Epoch 9 [83/250] loss=0.0498 onset=0.0227 frame=0.0198 offset=0.0074
+2026-04-28 03:28:51 [INFO] Epoch 9 [166/250] loss=0.0498 onset=0.0234 frame=0.0190 offset=0.0074
+2026-04-28 03:29:18 [INFO] Epoch 9 [249/250] loss=0.0368 onset=0.0158 frame=0.0154 offset=0.0056
+2026-04-28 03:29:28 [INFO] Epoch 9/1300 | train_loss=0.0440 | val_loss=0.0383 | COn_f1=0.5731 | COnP_f1=0.4543 | COnPOff_f1=0.2284 | sig_onset=0.0057 sig_frame=0.0140 | thresh(on=0.30,fr=0.40) | lr=3.00e-04
+2026-04-28 03:29:56 [INFO] Epoch 10 [83/250] loss=0.0399 onset=0.0186 frame=0.0154 offset=0.0058
+2026-04-28 03:30:23 [INFO] Epoch 10 [166/250] loss=0.0510 onset=0.0218 frame=0.0217 offset=0.0075
+2026-04-28 03:30:49 [INFO] Epoch 10 [249/250] loss=0.0412 onset=0.0175 frame=0.0173 offset=0.0064
+2026-04-28 03:33:20 [INFO]   Threshold search: best on=0.25, fr=0.40, COnP_f1=0.4896
+2026-04-28 03:33:30 [INFO] Epoch 10/1300 | train_loss=0.0427 | val_loss=0.0375 | COn_f1=0.6082 | COnP_f1=0.4916 | COnPOff_f1=0.2583 | sig_onset=0.0043 sig_frame=0.0130 | thresh(on=0.25,fr=0.40) | lr=3.00e-04
+2026-04-28 03:33:30 [INFO]   -> Best model saved! COnP_f1=0.4916
+2026-04-28 03:33:58 [INFO] Epoch 11 [83/250] loss=0.0412 onset=0.0192 frame=0.0154 offset=0.0065
+2026-04-28 03:34:25 [INFO] Epoch 11 [166/250] loss=0.0437 onset=0.0185 frame=0.0189 offset=0.0064
+2026-04-28 03:34:51 [INFO] Epoch 11 [249/250] loss=0.0448 onset=0.0194 frame=0.0189 offset=0.0065
+2026-04-28 03:35:02 [INFO] Epoch 11/1300 | train_loss=0.0417 | val_loss=0.0368 | COn_f1=0.6050 | COnP_f1=0.4964 | COnPOff_f1=0.2589 | sig_onset=0.0046 sig_frame=0.0138 | thresh(on=0.25,fr=0.40) | lr=3.00e-04
+2026-04-28 03:35:02 [INFO]   -> Best model saved! COnP_f1=0.4964
+2026-04-28 03:35:30 [INFO] Epoch 12 [83/250] loss=0.0404 onset=0.0178 frame=0.0164 offset=0.0062
+2026-04-28 03:35:57 [INFO] Epoch 12 [166/250] loss=0.0364 onset=0.0160 frame=0.0151 offset=0.0053
+2026-04-28 03:36:25 [INFO] Epoch 12 [249/250] loss=0.0373 onset=0.0166 frame=0.0151 offset=0.0056
+2026-04-28 03:36:35 [INFO] Epoch 12/1300 | train_loss=0.0414 | val_loss=0.0362 | COn_f1=0.6120 | COnP_f1=0.5051 | COnPOff_f1=0.2621 | sig_onset=0.0042 sig_frame=0.0136 | thresh(on=0.25,fr=0.40) | lr=3.00e-04
+2026-04-28 03:36:36 [INFO]   -> Best model saved! COnP_f1=0.5051
+2026-04-28 03:37:03 [INFO] Epoch 13 [83/250] loss=0.0424 onset=0.0184 frame=0.0172 offset=0.0069
+2026-04-28 03:37:30 [INFO] Epoch 13 [166/250] loss=0.0416 onset=0.0191 frame=0.0161 offset=0.0063
+2026-04-28 03:37:57 [INFO] Epoch 13 [249/250] loss=0.0433 onset=0.0185 frame=0.0186 offset=0.0062
+2026-04-28 03:38:08 [INFO] Epoch 13/1300 | train_loss=0.0405 | val_loss=0.0346 | COn_f1=0.6012 | COnP_f1=0.5192 | COnPOff_f1=0.2668 | sig_onset=0.0050 sig_frame=0.0133 | thresh(on=0.25,fr=0.40) | lr=3.00e-04
+2026-04-28 03:38:08 [INFO]   -> Best model saved! COnP_f1=0.5192
+2026-04-28 03:38:36 [INFO] Epoch 14 [83/250] loss=0.0383 onset=0.0173 frame=0.0154 offset=0.0056
+2026-04-28 03:39:02 [INFO] Epoch 14 [166/250] loss=0.0377 onset=0.0169 frame=0.0147 offset=0.0060
+2026-04-28 03:39:29 [INFO] Epoch 14 [249/250] loss=0.0417 onset=0.0186 frame=0.0167 offset=0.0063
+2026-04-28 03:39:40 [INFO] Epoch 14/1300 | train_loss=0.0391 | val_loss=0.0335 | COn_f1=0.6116 | COnP_f1=0.5425 | COnPOff_f1=0.2761 | sig_onset=0.0047 sig_frame=0.0135 | thresh(on=0.25,fr=0.40) | lr=3.00e-04
+2026-04-28 03:39:40 [INFO]   -> Best model saved! COnP_f1=0.5425
+2026-04-28 03:40:08 [INFO] Epoch 15 [83/250] loss=0.0396 onset=0.0178 frame=0.0153 offset=0.0065
+2026-04-28 03:40:35 [INFO] Epoch 15 [166/250] loss=0.0332 onset=0.0157 frame=0.0122 offset=0.0053
+2026-04-28 03:41:03 [INFO] Epoch 15 [249/250] loss=0.0315 onset=0.0136 frame=0.0127 offset=0.0053
+2026-04-28 03:43:38 [INFO]   Threshold search: best on=0.40, fr=0.40, COnP_f1=0.5718
+2026-04-28 03:43:48 [INFO] Epoch 15/1300 | train_loss=0.0376 | val_loss=0.0320 | COn_f1=0.6394 | COnP_f1=0.5752 | COnPOff_f1=0.2841 | sig_onset=0.0052 sig_frame=0.0134 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 03:43:49 [INFO]   -> Best model saved! COnP_f1=0.5752
+2026-04-28 03:44:16 [INFO] Epoch 16 [83/250] loss=0.0311 onset=0.0137 frame=0.0125 offset=0.0050
+2026-04-28 03:44:43 [INFO] Epoch 16 [166/250] loss=0.0382 onset=0.0172 frame=0.0144 offset=0.0066
+2026-04-28 03:45:10 [INFO] Epoch 16 [249/250] loss=0.0330 onset=0.0141 frame=0.0132 offset=0.0056
+2026-04-28 03:45:21 [INFO] Epoch 16/1300 | train_loss=0.0360 | val_loss=0.0302 | COn_f1=0.6664 | COnP_f1=0.6162 | COnPOff_f1=0.3069 | sig_onset=0.0044 sig_frame=0.0131 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 03:45:21 [INFO]   -> Best model saved! COnP_f1=0.6162
+2026-04-28 03:45:49 [INFO] Epoch 17 [83/250] loss=0.0325 onset=0.0146 frame=0.0121 offset=0.0058
+2026-04-28 03:46:16 [INFO] Epoch 17 [166/250] loss=0.0354 onset=0.0147 frame=0.0139 offset=0.0068
+2026-04-28 03:46:44 [INFO] Epoch 17 [249/250] loss=0.0334 onset=0.0140 frame=0.0133 offset=0.0061
+2026-04-28 03:46:55 [INFO] Epoch 17/1300 | train_loss=0.0345 | val_loss=0.0288 | COn_f1=0.6812 | COnP_f1=0.6421 | COnPOff_f1=0.3213 | sig_onset=0.0044 sig_frame=0.0134 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 03:46:55 [INFO]   -> Best model saved! COnP_f1=0.6421
+2026-04-28 03:47:23 [INFO] Epoch 18 [83/250] loss=0.0319 onset=0.0145 frame=0.0120 offset=0.0054
+2026-04-28 03:47:51 [INFO] Epoch 18 [166/250] loss=0.0400 onset=0.0172 frame=0.0158 offset=0.0071
+2026-04-28 03:48:18 [INFO] Epoch 18 [249/250] loss=0.0289 onset=0.0117 frame=0.0120 offset=0.0051
+2026-04-28 03:48:28 [INFO] Epoch 18/1300 | train_loss=0.0327 | val_loss=0.0280 | COn_f1=0.6866 | COnP_f1=0.6494 | COnPOff_f1=0.3093 | sig_onset=0.0047 sig_frame=0.0137 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 03:48:28 [INFO]   -> Best model saved! COnP_f1=0.6494
+2026-04-28 03:48:56 [INFO] Epoch 19 [83/250] loss=0.0247 onset=0.0098 frame=0.0101 offset=0.0048
+2026-04-28 03:49:23 [INFO] Epoch 19 [166/250] loss=0.0276 onset=0.0112 frame=0.0114 offset=0.0050
+2026-04-28 03:49:49 [INFO] Epoch 19 [249/250] loss=0.0255 onset=0.0104 frame=0.0101 offset=0.0049
+2026-04-28 03:50:00 [INFO] Epoch 19/1300 | train_loss=0.0318 | val_loss=0.0274 | COn_f1=0.7046 | COnP_f1=0.6691 | COnPOff_f1=0.3233 | sig_onset=0.0035 sig_frame=0.0133 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 03:50:00 [INFO]   -> Best model saved! COnP_f1=0.6691
+2026-04-28 03:50:27 [INFO] Epoch 20 [83/250] loss=0.0334 onset=0.0137 frame=0.0138 offset=0.0059
+2026-04-28 03:50:55 [INFO] Epoch 20 [166/250] loss=0.0287 onset=0.0109 frame=0.0122 offset=0.0056
+2026-04-28 03:51:23 [INFO] Epoch 20 [249/250] loss=0.0314 onset=0.0137 frame=0.0120 offset=0.0057
+2026-04-28 03:53:41 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.6756
+2026-04-28 03:53:52 [INFO] Epoch 20/1300 | train_loss=0.0312 | val_loss=0.0267 | COn_f1=0.7127 | COnP_f1=0.6791 | COnPOff_f1=0.3389 | sig_onset=0.0044 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 03:53:52 [INFO]   -> Best model saved! COnP_f1=0.6791
+2026-04-28 03:54:19 [INFO] Epoch 21 [83/250] loss=0.0312 onset=0.0123 frame=0.0133 offset=0.0056
+2026-04-28 03:54:46 [INFO] Epoch 21 [166/250] loss=0.0287 onset=0.0110 frame=0.0122 offset=0.0055
+2026-04-28 03:55:14 [INFO] Epoch 21 [249/250] loss=0.0311 onset=0.0133 frame=0.0123 offset=0.0056
+2026-04-28 03:55:24 [INFO] Epoch 21/1300 | train_loss=0.0305 | val_loss=0.0267 | COn_f1=0.7141 | COnP_f1=0.6811 | COnPOff_f1=0.3361 | sig_onset=0.0036 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 03:55:24 [INFO]   -> Best model saved! COnP_f1=0.6811
+2026-04-28 03:55:50 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7140 | COnP_f1=0.6799 | COnPOff_f1=0.3373
+2026-04-28 03:56:18 [INFO] Epoch 22 [83/250] loss=0.0255 onset=0.0099 frame=0.0106 offset=0.0050
+2026-04-28 03:56:46 [INFO] Epoch 22 [166/250] loss=0.0280 onset=0.0115 frame=0.0114 offset=0.0051
+2026-04-28 03:57:14 [INFO] Epoch 22 [249/250] loss=0.0324 onset=0.0141 frame=0.0127 offset=0.0056
+2026-04-28 03:57:24 [INFO] Epoch 22/1300 | train_loss=0.0299 | val_loss=0.0260 | COn_f1=0.7151 | COnP_f1=0.6829 | COnPOff_f1=0.3301 | sig_onset=0.0039 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 03:57:25 [INFO]   -> Best model saved! COnP_f1=0.6829
+2026-04-28 03:57:50 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7217 | COnP_f1=0.6854 | COnPOff_f1=0.3306
+2026-04-28 03:58:19 [INFO] Epoch 23 [83/250] loss=0.0276 onset=0.0114 frame=0.0109 offset=0.0052
+2026-04-28 03:58:46 [INFO] Epoch 23 [166/250] loss=0.0290 onset=0.0119 frame=0.0118 offset=0.0053
+2026-04-28 03:59:13 [INFO] Epoch 23 [249/250] loss=0.0307 onset=0.0131 frame=0.0119 offset=0.0057
+2026-04-28 03:59:23 [INFO] Epoch 23/1300 | train_loss=0.0292 | val_loss=0.0255 | COn_f1=0.7188 | COnP_f1=0.6871 | COnPOff_f1=0.3264 | sig_onset=0.0043 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 03:59:23 [INFO]   -> Best model saved! COnP_f1=0.6871
+2026-04-28 03:59:49 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7238 | COnP_f1=0.6887 | COnPOff_f1=0.3282
+2026-04-28 04:00:16 [INFO] Epoch 24 [83/250] loss=0.0264 onset=0.0108 frame=0.0110 offset=0.0046
+2026-04-28 04:00:43 [INFO] Epoch 24 [166/250] loss=0.0349 onset=0.0134 frame=0.0148 offset=0.0067
+2026-04-28 04:01:10 [INFO] Epoch 24 [249/250] loss=0.0197 onset=0.0077 frame=0.0081 offset=0.0038
+2026-04-28 04:01:20 [INFO] Epoch 24/1300 | train_loss=0.0294 | val_loss=0.0255 | COn_f1=0.7220 | COnP_f1=0.6899 | COnPOff_f1=0.3411 | sig_onset=0.0035 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 04:01:21 [INFO]   -> Best model saved! COnP_f1=0.6899
+2026-04-28 04:01:46 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7271 | COnP_f1=0.6920 | COnPOff_f1=0.3437
+2026-04-28 04:02:14 [INFO] Epoch 25 [83/250] loss=0.0291 onset=0.0115 frame=0.0123 offset=0.0053
+2026-04-28 04:02:42 [INFO] Epoch 25 [166/250] loss=0.0272 onset=0.0112 frame=0.0109 offset=0.0051
+2026-04-28 04:03:10 [INFO] Epoch 25 [249/250] loss=0.0300 onset=0.0117 frame=0.0129 offset=0.0053
+2026-04-28 04:05:27 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.6913
+2026-04-28 04:05:37 [INFO] Epoch 25/1300 | train_loss=0.0287 | val_loss=0.0252 | COn_f1=0.7270 | COnP_f1=0.6964 | COnPOff_f1=0.3529 | sig_onset=0.0036 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 04:05:37 [INFO]   -> Best model saved! COnP_f1=0.6964
+2026-04-28 04:06:03 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7347 | COnP_f1=0.7005 | COnPOff_f1=0.3504
+2026-04-28 04:06:30 [INFO] Epoch 26 [83/250] loss=0.0302 onset=0.0133 frame=0.0112 offset=0.0057
+2026-04-28 04:06:58 [INFO] Epoch 26 [166/250] loss=0.0353 onset=0.0151 frame=0.0136 offset=0.0066
+2026-04-28 04:07:25 [INFO] Epoch 26 [249/250] loss=0.0306 onset=0.0116 frame=0.0140 offset=0.0051
+2026-04-28 04:07:36 [INFO] Epoch 26/1300 | train_loss=0.0289 | val_loss=0.0252 | COn_f1=0.7302 | COnP_f1=0.6980 | COnPOff_f1=0.3208 | sig_onset=0.0038 sig_frame=0.0137 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 04:07:36 [INFO]   -> Best model saved! COnP_f1=0.6980
+2026-04-28 04:08:01 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7338 | COnP_f1=0.6969 | COnPOff_f1=0.3173
+2026-04-28 04:08:30 [INFO] Epoch 27 [83/250] loss=0.0264 onset=0.0110 frame=0.0101 offset=0.0053
+2026-04-28 04:08:58 [INFO] Epoch 27 [166/250] loss=0.0310 onset=0.0126 frame=0.0130 offset=0.0054
+2026-04-28 04:09:25 [INFO] Epoch 27 [249/250] loss=0.0248 onset=0.0106 frame=0.0091 offset=0.0052
+2026-04-28 04:09:35 [INFO] Epoch 27/1300 | train_loss=0.0281 | val_loss=0.0248 | COn_f1=0.7320 | COnP_f1=0.6996 | COnPOff_f1=0.3466 | sig_onset=0.0037 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 04:09:36 [INFO]   -> Best model saved! COnP_f1=0.6996
+2026-04-28 04:10:01 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7366 | COnP_f1=0.7034 | COnPOff_f1=0.3410
+2026-04-28 04:10:28 [INFO] Epoch 28 [83/250] loss=0.0291 onset=0.0113 frame=0.0126 offset=0.0052
+2026-04-28 04:10:55 [INFO] Epoch 28 [166/250] loss=0.0262 onset=0.0102 frame=0.0105 offset=0.0055
+2026-04-28 04:11:22 [INFO] Epoch 28 [249/250] loss=0.0247 onset=0.0096 frame=0.0098 offset=0.0054
+2026-04-28 04:11:33 [INFO] Epoch 28/1300 | train_loss=0.0275 | val_loss=0.0244 | COn_f1=0.7365 | COnP_f1=0.7049 | COnPOff_f1=0.3410 | sig_onset=0.0037 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 04:11:33 [INFO]   -> Best model saved! COnP_f1=0.7049
+2026-04-28 04:11:58 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7384 | COnP_f1=0.7056 | COnPOff_f1=0.3380
+2026-04-28 04:12:26 [INFO] Epoch 29 [83/250] loss=0.0244 onset=0.0097 frame=0.0098 offset=0.0048
+2026-04-28 04:12:54 [INFO] Epoch 29 [166/250] loss=0.0268 onset=0.0111 frame=0.0109 offset=0.0048
+2026-04-28 04:13:22 [INFO] Epoch 29 [249/250] loss=0.0276 onset=0.0119 frame=0.0105 offset=0.0051
+2026-04-28 04:13:33 [INFO] Epoch 29/1300 | train_loss=0.0276 | val_loss=0.0246 | COn_f1=0.7354 | COnP_f1=0.7055 | COnPOff_f1=0.3298 | sig_onset=0.0039 sig_frame=0.0139 | thresh(on=0.50,fr=0.40) | lr=3.00e-04
+2026-04-28 04:13:33 [INFO]   -> Best model saved! COnP_f1=0.7055
+2026-04-28 04:13:58 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7396 | COnP_f1=0.7058 | COnPOff_f1=0.3306
+2026-04-28 04:14:26 [INFO] Epoch 30 [83/250] loss=0.0204 onset=0.0083 frame=0.0081 offset=0.0039
+2026-04-28 04:14:55 [INFO] Epoch 30 [166/250] loss=0.0308 onset=0.0130 frame=0.0124 offset=0.0054
+2026-04-28 04:15:23 [INFO] Epoch 30 [249/250] loss=0.0279 onset=0.0109 frame=0.0116 offset=0.0055
+2026-04-28 04:17:40 [INFO]   Threshold search: best on=0.40, fr=0.40, COnP_f1=0.7033
+2026-04-28 04:17:50 [INFO] Epoch 30/1300 | train_loss=0.0274 | val_loss=0.0241 | COn_f1=0.7371 | COnP_f1=0.7082 | COnPOff_f1=0.3363 | sig_onset=0.0036 sig_frame=0.0137 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 04:17:50 [INFO]   -> Best model saved! COnP_f1=0.7082
+2026-04-28 04:18:16 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7383 | COnP_f1=0.7048 | COnPOff_f1=0.3334
+2026-04-28 04:18:43 [INFO] Epoch 31 [83/250] loss=0.0289 onset=0.0120 frame=0.0114 offset=0.0055
+2026-04-28 04:19:11 [INFO] Epoch 31 [166/250] loss=0.0277 onset=0.0118 frame=0.0108 offset=0.0051
+2026-04-28 04:19:38 [INFO] Epoch 31 [249/250] loss=0.0257 onset=0.0100 frame=0.0109 offset=0.0048
+2026-04-28 04:19:49 [INFO] Epoch 31/1300 | train_loss=0.0270 | val_loss=0.0241 | COn_f1=0.7359 | COnP_f1=0.7055 | COnPOff_f1=0.3336 | sig_onset=0.0039 sig_frame=0.0135 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 04:20:17 [INFO] Epoch 32 [83/250] loss=0.0322 onset=0.0136 frame=0.0126 offset=0.0060
+2026-04-28 04:20:45 [INFO] Epoch 32 [166/250] loss=0.0287 onset=0.0121 frame=0.0113 offset=0.0054
+2026-04-28 04:21:13 [INFO] Epoch 32 [249/250] loss=0.0250 onset=0.0103 frame=0.0099 offset=0.0048
+2026-04-28 04:21:23 [INFO] Epoch 32/1300 | train_loss=0.0272 | val_loss=0.0238 | COn_f1=0.7370 | COnP_f1=0.7064 | COnPOff_f1=0.3523 | sig_onset=0.0037 sig_frame=0.0132 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 04:21:51 [INFO] Epoch 33 [83/250] loss=0.0203 onset=0.0085 frame=0.0077 offset=0.0041
+2026-04-28 04:22:18 [INFO] Epoch 33 [166/250] loss=0.0293 onset=0.0117 frame=0.0123 offset=0.0053
+2026-04-28 04:22:44 [INFO] Epoch 33 [249/250] loss=0.0266 onset=0.0108 frame=0.0106 offset=0.0052
+2026-04-28 04:22:55 [INFO] Epoch 33/1300 | train_loss=0.0266 | val_loss=0.0235 | COn_f1=0.7407 | COnP_f1=0.7111 | COnPOff_f1=0.3446 | sig_onset=0.0037 sig_frame=0.0136 | thresh(on=0.40,fr=0.40) | lr=3.00e-04
+2026-04-28 04:22:55 [INFO]   -> Best model saved! COnP_f1=0.7111
+2026-04-28 04:23:21 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7451 | COnP_f1=0.7128 | COnPOff_f1=0.3453
+2026-04-28 04:23:48 [INFO] Epoch 34 [83/250] loss=0.0230 onset=0.0091 frame=0.0094 offset=0.0045
+2026-04-28 04:24:16 [INFO] Epoch 34 [166/250] loss=0.0265 onset=0.0106 frame=0.0106 offset=0.0053
+2026-04-28 04:24:43 [INFO] Epoch 34 [249/250] loss=0.0289 onset=0.0126 frame=0.0112 offset=0.0052
+2026-04-28 04:24:54 [INFO] Epoch 34/1300 | train_loss=0.0261 | val_loss=0.0232 | COn_f1=0.7372 | COnP_f1=0.7073 | COnPOff_f1=0.3509 | sig_onset=0.0040 sig_frame=0.0131 | thresh(on=0.40,fr=0.40) | lr=2.99e-04
+2026-04-28 04:25:22 [INFO] Epoch 35 [83/250] loss=0.0289 onset=0.0120 frame=0.0119 offset=0.0050
+2026-04-28 04:25:50 [INFO] Epoch 35 [166/250] loss=0.0258 onset=0.0109 frame=0.0101 offset=0.0049
+2026-04-28 04:26:18 [INFO] Epoch 35 [249/250] loss=0.0297 onset=0.0119 frame=0.0124 offset=0.0054
+2026-04-28 04:28:35 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7155
+2026-04-28 04:28:45 [INFO] Epoch 35/1300 | train_loss=0.0262 | val_loss=0.0233 | COn_f1=0.7523 | COnP_f1=0.7207 | COnPOff_f1=0.3404 | sig_onset=0.0038 sig_frame=0.0137 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:28:45 [INFO]   -> Best model saved! COnP_f1=0.7207
+2026-04-28 04:29:11 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7534 | COnP_f1=0.7207 | COnPOff_f1=0.3375
+2026-04-28 04:29:38 [INFO] Epoch 36 [83/250] loss=0.0331 onset=0.0126 frame=0.0151 offset=0.0055
+2026-04-28 04:30:06 [INFO] Epoch 36 [166/250] loss=0.0268 onset=0.0108 frame=0.0111 offset=0.0049
+2026-04-28 04:30:33 [INFO] Epoch 36 [249/250] loss=0.0262 onset=0.0106 frame=0.0104 offset=0.0052
+2026-04-28 04:30:44 [INFO] Epoch 36/1300 | train_loss=0.0262 | val_loss=0.0229 | COn_f1=0.7507 | COnP_f1=0.7210 | COnPOff_f1=0.3583 | sig_onset=0.0035 sig_frame=0.0134 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:30:44 [INFO]   -> Best model saved! COnP_f1=0.7210
+2026-04-28 04:31:09 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7547 | COnP_f1=0.7230 | COnPOff_f1=0.3505
+2026-04-28 04:31:38 [INFO] Epoch 37 [83/250] loss=0.0283 onset=0.0115 frame=0.0115 offset=0.0052
+2026-04-28 04:32:06 [INFO] Epoch 37 [166/250] loss=0.0252 onset=0.0102 frame=0.0100 offset=0.0051
+2026-04-28 04:32:34 [INFO] Epoch 37 [249/250] loss=0.0239 onset=0.0098 frame=0.0092 offset=0.0048
+2026-04-28 04:32:45 [INFO] Epoch 37/1300 | train_loss=0.0259 | val_loss=0.0228 | COn_f1=0.7504 | COnP_f1=0.7204 | COnPOff_f1=0.3689 | sig_onset=0.0034 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:33:13 [INFO] Epoch 38 [83/250] loss=0.0268 onset=0.0111 frame=0.0107 offset=0.0051
+2026-04-28 04:33:40 [INFO] Epoch 38 [166/250] loss=0.0252 onset=0.0102 frame=0.0105 offset=0.0045
+2026-04-28 04:34:07 [INFO] Epoch 38 [249/250] loss=0.0254 onset=0.0108 frame=0.0102 offset=0.0045
+2026-04-28 04:34:17 [INFO] Epoch 38/1300 | train_loss=0.0256 | val_loss=0.0227 | COn_f1=0.7562 | COnP_f1=0.7272 | COnPOff_f1=0.3570 | sig_onset=0.0035 sig_frame=0.0134 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:34:17 [INFO]   -> Best model saved! COnP_f1=0.7272
+2026-04-28 04:34:43 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7573 | COnP_f1=0.7247 | COnPOff_f1=0.3478
+2026-04-28 04:35:10 [INFO] Epoch 39 [83/250] loss=0.0236 onset=0.0100 frame=0.0089 offset=0.0047
+2026-04-28 04:35:37 [INFO] Epoch 39 [166/250] loss=0.0231 onset=0.0099 frame=0.0087 offset=0.0045
+2026-04-28 04:36:05 [INFO] Epoch 39 [249/250] loss=0.0267 onset=0.0109 frame=0.0107 offset=0.0050
+2026-04-28 04:36:16 [INFO] Epoch 39/1300 | train_loss=0.0255 | val_loss=0.0225 | COn_f1=0.7518 | COnP_f1=0.7233 | COnPOff_f1=0.3516 | sig_onset=0.0038 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:36:44 [INFO] Epoch 40 [83/250] loss=0.0235 onset=0.0098 frame=0.0091 offset=0.0045
+2026-04-28 04:37:12 [INFO] Epoch 40 [166/250] loss=0.0292 onset=0.0128 frame=0.0110 offset=0.0055
+2026-04-28 04:37:40 [INFO] Epoch 40 [249/250] loss=0.0206 onset=0.0085 frame=0.0080 offset=0.0041
+2026-04-28 04:39:56 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7264
+2026-04-28 04:40:07 [INFO] Epoch 40/1300 | train_loss=0.0255 | val_loss=0.0225 | COn_f1=0.7604 | COnP_f1=0.7323 | COnPOff_f1=0.3542 | sig_onset=0.0035 sig_frame=0.0139 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:40:07 [INFO]   -> Best model saved! COnP_f1=0.7323
+2026-04-28 04:40:32 [INFO]   [TEST MONITOR FULL TEST:periodic_40+best_after20] COn_f1=0.7593 | COnP_f1=0.7260 | COnPOff_f1=0.3444
+2026-04-28 04:41:00 [INFO] Epoch 41 [83/250] loss=0.0236 onset=0.0097 frame=0.0093 offset=0.0046
+2026-04-28 04:41:27 [INFO] Epoch 41 [166/250] loss=0.0223 onset=0.0086 frame=0.0093 offset=0.0044
+2026-04-28 04:41:55 [INFO] Epoch 41 [249/250] loss=0.0233 onset=0.0090 frame=0.0099 offset=0.0044
+2026-04-28 04:42:06 [INFO] Epoch 41/1300 | train_loss=0.0252 | val_loss=0.0224 | COn_f1=0.7577 | COnP_f1=0.7292 | COnPOff_f1=0.3903 | sig_onset=0.0044 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:42:34 [INFO] Epoch 42 [83/250] loss=0.0267 onset=0.0109 frame=0.0106 offset=0.0052
+2026-04-28 04:43:02 [INFO] Epoch 42 [166/250] loss=0.0263 onset=0.0110 frame=0.0103 offset=0.0050
+2026-04-28 04:43:30 [INFO] Epoch 42 [249/250] loss=0.0251 onset=0.0101 frame=0.0103 offset=0.0047
+2026-04-28 04:43:41 [INFO] Epoch 42/1300 | train_loss=0.0251 | val_loss=0.0223 | COn_f1=0.7597 | COnP_f1=0.7320 | COnPOff_f1=0.3636 | sig_onset=0.0036 sig_frame=0.0136 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:44:09 [INFO] Epoch 43 [83/250] loss=0.0282 onset=0.0114 frame=0.0120 offset=0.0048
+2026-04-28 04:44:38 [INFO] Epoch 43 [166/250] loss=0.0276 onset=0.0111 frame=0.0110 offset=0.0055
+2026-04-28 04:45:06 [INFO] Epoch 43 [249/250] loss=0.0249 onset=0.0101 frame=0.0099 offset=0.0049
+2026-04-28 04:45:16 [INFO] Epoch 43/1300 | train_loss=0.0250 | val_loss=0.0221 | COn_f1=0.7671 | COnP_f1=0.7381 | COnPOff_f1=0.3772 | sig_onset=0.0036 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:45:17 [INFO]   -> Best model saved! COnP_f1=0.7381
+2026-04-28 04:45:42 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7683 | COnP_f1=0.7360 | COnPOff_f1=0.3666
+2026-04-28 04:46:09 [INFO] Epoch 44 [83/250] loss=0.0201 onset=0.0084 frame=0.0072 offset=0.0045
+2026-04-28 04:46:36 [INFO] Epoch 44 [166/250] loss=0.0233 onset=0.0098 frame=0.0085 offset=0.0049
+2026-04-28 04:47:03 [INFO] Epoch 44 [249/250] loss=0.0242 onset=0.0094 frame=0.0099 offset=0.0048
+2026-04-28 04:47:14 [INFO] Epoch 44/1300 | train_loss=0.0247 | val_loss=0.0222 | COn_f1=0.7616 | COnP_f1=0.7340 | COnPOff_f1=0.3600 | sig_onset=0.0039 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:47:41 [INFO] Epoch 45 [83/250] loss=0.0247 onset=0.0108 frame=0.0088 offset=0.0051
+2026-04-28 04:48:09 [INFO] Epoch 45 [166/250] loss=0.0279 onset=0.0113 frame=0.0112 offset=0.0053
+2026-04-28 04:48:37 [INFO] Epoch 45 [249/250] loss=0.0270 onset=0.0112 frame=0.0108 offset=0.0050
+2026-04-28 04:50:52 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7316
+2026-04-28 04:51:02 [INFO] Epoch 45/1300 | train_loss=0.0247 | val_loss=0.0222 | COn_f1=0.7639 | COnP_f1=0.7359 | COnPOff_f1=0.4002 | sig_onset=0.0040 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:51:30 [INFO] Epoch 46 [83/250] loss=0.0239 onset=0.0094 frame=0.0097 offset=0.0048
+2026-04-28 04:51:57 [INFO] Epoch 46 [166/250] loss=0.0296 onset=0.0129 frame=0.0114 offset=0.0053
+2026-04-28 04:52:25 [INFO] Epoch 46 [249/250] loss=0.0258 onset=0.0108 frame=0.0104 offset=0.0047
+2026-04-28 04:52:35 [INFO] Epoch 46/1300 | train_loss=0.0247 | val_loss=0.0218 | COn_f1=0.7634 | COnP_f1=0.7357 | COnPOff_f1=0.3973 | sig_onset=0.0039 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:53:03 [INFO] Epoch 47 [83/250] loss=0.0239 onset=0.0095 frame=0.0096 offset=0.0048
+2026-04-28 04:53:31 [INFO] Epoch 47 [166/250] loss=0.0208 onset=0.0092 frame=0.0074 offset=0.0042
+2026-04-28 04:54:00 [INFO] Epoch 47 [249/250] loss=0.0245 onset=0.0101 frame=0.0099 offset=0.0045
+2026-04-28 04:54:10 [INFO] Epoch 47/1300 | train_loss=0.0245 | val_loss=0.0215 | COn_f1=0.7671 | COnP_f1=0.7414 | COnPOff_f1=0.4222 | sig_onset=0.0035 sig_frame=0.0127 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:54:10 [INFO]   -> Best model saved! COnP_f1=0.7414
+2026-04-28 04:54:36 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7670 | COnP_f1=0.7358 | COnPOff_f1=0.3996
+2026-04-28 04:55:04 [INFO] Epoch 48 [83/250] loss=0.0217 onset=0.0089 frame=0.0082 offset=0.0046
+2026-04-28 04:55:33 [INFO] Epoch 48 [166/250] loss=0.0213 onset=0.0085 frame=0.0090 offset=0.0038
+2026-04-28 04:56:02 [INFO] Epoch 48 [249/250] loss=0.0308 onset=0.0124 frame=0.0127 offset=0.0056
+2026-04-28 04:56:12 [INFO] Epoch 48/1300 | train_loss=0.0246 | val_loss=0.0216 | COn_f1=0.7696 | COnP_f1=0.7423 | COnPOff_f1=0.3757 | sig_onset=0.0036 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:56:12 [INFO]   -> Best model saved! COnP_f1=0.7423
+2026-04-28 04:56:38 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7661 | COnP_f1=0.7364 | COnPOff_f1=0.3637
+2026-04-28 04:57:05 [INFO] Epoch 49 [83/250] loss=0.0214 onset=0.0089 frame=0.0084 offset=0.0041
+2026-04-28 04:57:32 [INFO] Epoch 49 [166/250] loss=0.0248 onset=0.0103 frame=0.0100 offset=0.0046
+2026-04-28 04:57:59 [INFO] Epoch 49 [249/250] loss=0.0253 onset=0.0108 frame=0.0095 offset=0.0050
+2026-04-28 04:58:10 [INFO] Epoch 49/1300 | train_loss=0.0242 | val_loss=0.0216 | COn_f1=0.7700 | COnP_f1=0.7429 | COnPOff_f1=0.4009 | sig_onset=0.0035 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 04:58:10 [INFO]   -> Best model saved! COnP_f1=0.7429
+2026-04-28 04:58:35 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7726 | COnP_f1=0.7404 | COnPOff_f1=0.3841
+2026-04-28 04:59:02 [INFO] Epoch 50 [83/250] loss=0.0241 onset=0.0100 frame=0.0092 offset=0.0049
+2026-04-28 04:59:30 [INFO] Epoch 50 [166/250] loss=0.0299 onset=0.0126 frame=0.0113 offset=0.0060
+2026-04-28 04:59:58 [INFO] Epoch 50 [249/250] loss=0.0245 onset=0.0103 frame=0.0095 offset=0.0047
+2026-04-28 05:02:14 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7329
+2026-04-28 05:02:24 [INFO] Epoch 50/1300 | train_loss=0.0243 | val_loss=0.0214 | COn_f1=0.7656 | COnP_f1=0.7385 | COnPOff_f1=0.3754 | sig_onset=0.0036 sig_frame=0.0134 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:02:51 [INFO] Epoch 51 [83/250] loss=0.0270 onset=0.0120 frame=0.0099 offset=0.0051
+2026-04-28 05:03:19 [INFO] Epoch 51 [166/250] loss=0.0250 onset=0.0104 frame=0.0100 offset=0.0045
+2026-04-28 05:03:46 [INFO] Epoch 51 [249/250] loss=0.0235 onset=0.0092 frame=0.0102 offset=0.0042
+2026-04-28 05:03:57 [INFO] Epoch 51/1300 | train_loss=0.0239 | val_loss=0.0216 | COn_f1=0.7745 | COnP_f1=0.7475 | COnPOff_f1=0.3818 | sig_onset=0.0037 sig_frame=0.0138 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:03:57 [INFO]   -> Best model saved! COnP_f1=0.7475
+2026-04-28 05:04:22 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7724 | COnP_f1=0.7409 | COnPOff_f1=0.3674
+2026-04-28 05:04:50 [INFO] Epoch 52 [83/250] loss=0.0179 onset=0.0077 frame=0.0066 offset=0.0036
+2026-04-28 05:05:19 [INFO] Epoch 52 [166/250] loss=0.0220 onset=0.0086 frame=0.0088 offset=0.0046
+2026-04-28 05:05:47 [INFO] Epoch 52 [249/250] loss=0.0165 onset=0.0064 frame=0.0070 offset=0.0032
+2026-04-28 05:05:57 [INFO] Epoch 52/1300 | train_loss=0.0243 | val_loss=0.0214 | COn_f1=0.7658 | COnP_f1=0.7399 | COnPOff_f1=0.3843 | sig_onset=0.0040 sig_frame=0.0136 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:06:26 [INFO] Epoch 53 [83/250] loss=0.0231 onset=0.0092 frame=0.0094 offset=0.0045
+2026-04-28 05:06:55 [INFO] Epoch 53 [166/250] loss=0.0208 onset=0.0078 frame=0.0089 offset=0.0041
+2026-04-28 05:07:23 [INFO] Epoch 53 [249/250] loss=0.0244 onset=0.0102 frame=0.0097 offset=0.0046
+2026-04-28 05:07:34 [INFO] Epoch 53/1300 | train_loss=0.0241 | val_loss=0.0212 | COn_f1=0.7761 | COnP_f1=0.7500 | COnPOff_f1=0.3916 | sig_onset=0.0035 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:07:34 [INFO]   -> Best model saved! COnP_f1=0.7500
+2026-04-28 05:07:59 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7733 | COnP_f1=0.7425 | COnPOff_f1=0.3744
+2026-04-28 05:08:27 [INFO] Epoch 54 [83/250] loss=0.0225 onset=0.0085 frame=0.0099 offset=0.0041
+2026-04-28 05:08:54 [INFO] Epoch 54 [166/250] loss=0.0225 onset=0.0089 frame=0.0094 offset=0.0042
+2026-04-28 05:09:20 [INFO] Epoch 54 [249/250] loss=0.0290 onset=0.0122 frame=0.0113 offset=0.0055
+2026-04-28 05:09:31 [INFO] Epoch 54/1300 | train_loss=0.0239 | val_loss=0.0208 | COn_f1=0.7750 | COnP_f1=0.7491 | COnPOff_f1=0.4026 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:09:58 [INFO] Epoch 55 [83/250] loss=0.0228 onset=0.0096 frame=0.0086 offset=0.0046
+2026-04-28 05:10:25 [INFO] Epoch 55 [166/250] loss=0.0192 onset=0.0077 frame=0.0075 offset=0.0040
+2026-04-28 05:10:52 [INFO] Epoch 55 [249/250] loss=0.0240 onset=0.0106 frame=0.0086 offset=0.0049
+2026-04-28 05:13:08 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7470
+2026-04-28 05:13:18 [INFO] Epoch 55/1300 | train_loss=0.0236 | val_loss=0.0211 | COn_f1=0.7761 | COnP_f1=0.7503 | COnPOff_f1=0.4097 | sig_onset=0.0039 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:13:19 [INFO]   -> Best model saved! COnP_f1=0.7503
+2026-04-28 05:13:44 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7728 | COnP_f1=0.7419 | COnPOff_f1=0.3924
+2026-04-28 05:14:11 [INFO] Epoch 56 [83/250] loss=0.0237 onset=0.0096 frame=0.0097 offset=0.0044
+2026-04-28 05:14:38 [INFO] Epoch 56 [166/250] loss=0.0233 onset=0.0095 frame=0.0092 offset=0.0046
+2026-04-28 05:15:05 [INFO] Epoch 56 [249/250] loss=0.0272 onset=0.0111 frame=0.0109 offset=0.0052
+2026-04-28 05:15:16 [INFO] Epoch 56/1300 | train_loss=0.0236 | val_loss=0.0210 | COn_f1=0.7754 | COnP_f1=0.7490 | COnPOff_f1=0.3915 | sig_onset=0.0034 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:15:43 [INFO] Epoch 57 [83/250] loss=0.0232 onset=0.0095 frame=0.0090 offset=0.0047
+2026-04-28 05:16:10 [INFO] Epoch 57 [166/250] loss=0.0301 onset=0.0127 frame=0.0118 offset=0.0055
+2026-04-28 05:16:37 [INFO] Epoch 57 [249/250] loss=0.0267 onset=0.0108 frame=0.0108 offset=0.0051
+2026-04-28 05:16:47 [INFO] Epoch 57/1300 | train_loss=0.0238 | val_loss=0.0209 | COn_f1=0.7720 | COnP_f1=0.7453 | COnPOff_f1=0.3854 | sig_onset=0.0037 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:17:14 [INFO] Epoch 58 [83/250] loss=0.0186 onset=0.0072 frame=0.0076 offset=0.0037
+2026-04-28 05:17:41 [INFO] Epoch 58 [166/250] loss=0.0212 onset=0.0084 frame=0.0088 offset=0.0040
+2026-04-28 05:18:08 [INFO] Epoch 58 [249/250] loss=0.0265 onset=0.0109 frame=0.0102 offset=0.0054
+2026-04-28 05:18:19 [INFO] Epoch 58/1300 | train_loss=0.0235 | val_loss=0.0208 | COn_f1=0.7813 | COnP_f1=0.7555 | COnPOff_f1=0.4232 | sig_onset=0.0035 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.99e-04
+2026-04-28 05:18:19 [INFO]   -> Best model saved! COnP_f1=0.7555
+2026-04-28 05:18:44 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7787 | COnP_f1=0.7477 | COnPOff_f1=0.4066
+2026-04-28 05:19:11 [INFO] Epoch 59 [83/250] loss=0.0250 onset=0.0104 frame=0.0098 offset=0.0047
+2026-04-28 05:19:38 [INFO] Epoch 59 [166/250] loss=0.0219 onset=0.0090 frame=0.0086 offset=0.0043
+2026-04-28 05:20:05 [INFO] Epoch 59 [249/250] loss=0.0223 onset=0.0089 frame=0.0089 offset=0.0045
+2026-04-28 05:20:16 [INFO] Epoch 59/1300 | train_loss=0.0234 | val_loss=0.0209 | COn_f1=0.7799 | COnP_f1=0.7549 | COnPOff_f1=0.4235 | sig_onset=0.0033 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:20:43 [INFO] Epoch 60 [83/250] loss=0.0238 onset=0.0098 frame=0.0093 offset=0.0046
+2026-04-28 05:21:10 [INFO] Epoch 60 [166/250] loss=0.0187 onset=0.0076 frame=0.0075 offset=0.0037
+2026-04-28 05:21:37 [INFO] Epoch 60 [249/250] loss=0.0262 onset=0.0114 frame=0.0098 offset=0.0050
+2026-04-28 05:23:51 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7397
+2026-04-28 05:24:02 [INFO] Epoch 60/1300 | train_loss=0.0233 | val_loss=0.0208 | COn_f1=0.7686 | COnP_f1=0.7434 | COnPOff_f1=0.4016 | sig_onset=0.0038 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:24:29 [INFO] Epoch 61 [83/250] loss=0.0253 onset=0.0105 frame=0.0103 offset=0.0045
+2026-04-28 05:24:56 [INFO] Epoch 61 [166/250] loss=0.0247 onset=0.0096 frame=0.0106 offset=0.0045
+2026-04-28 05:25:23 [INFO] Epoch 61 [249/250] loss=0.0270 onset=0.0106 frame=0.0110 offset=0.0054
+2026-04-28 05:25:33 [INFO] Epoch 61/1300 | train_loss=0.0233 | val_loss=0.0207 | COn_f1=0.7842 | COnP_f1=0.7587 | COnPOff_f1=0.4295 | sig_onset=0.0035 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:25:34 [INFO]   -> Best model saved! COnP_f1=0.7587
+2026-04-28 05:25:59 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7766 | COnP_f1=0.7458 | COnPOff_f1=0.4097
+2026-04-28 05:26:26 [INFO] Epoch 62 [83/250] loss=0.0255 onset=0.0103 frame=0.0103 offset=0.0049
+2026-04-28 05:26:53 [INFO] Epoch 62 [166/250] loss=0.0197 onset=0.0085 frame=0.0071 offset=0.0041
+2026-04-28 05:27:20 [INFO] Epoch 62 [249/250] loss=0.0222 onset=0.0089 frame=0.0089 offset=0.0044
+2026-04-28 05:27:31 [INFO] Epoch 62/1300 | train_loss=0.0231 | val_loss=0.0202 | COn_f1=0.7848 | COnP_f1=0.7596 | COnPOff_f1=0.4358 | sig_onset=0.0035 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:27:31 [INFO]   -> Best model saved! COnP_f1=0.7596
+2026-04-28 05:27:56 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7822 | COnP_f1=0.7514 | COnPOff_f1=0.4210
+2026-04-28 05:28:23 [INFO] Epoch 63 [83/250] loss=0.0224 onset=0.0085 frame=0.0096 offset=0.0043
+2026-04-28 05:28:50 [INFO] Epoch 63 [166/250] loss=0.0280 onset=0.0114 frame=0.0113 offset=0.0053
+2026-04-28 05:29:17 [INFO] Epoch 63 [249/250] loss=0.0228 onset=0.0091 frame=0.0095 offset=0.0041
+2026-04-28 05:29:28 [INFO] Epoch 63/1300 | train_loss=0.0231 | val_loss=0.0204 | COn_f1=0.7807 | COnP_f1=0.7556 | COnPOff_f1=0.4137 | sig_onset=0.0036 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:29:55 [INFO] Epoch 64 [83/250] loss=0.0250 onset=0.0103 frame=0.0097 offset=0.0050
+2026-04-28 05:30:22 [INFO] Epoch 64 [166/250] loss=0.0225 onset=0.0089 frame=0.0093 offset=0.0043
+2026-04-28 05:30:49 [INFO] Epoch 64 [249/250] loss=0.0240 onset=0.0098 frame=0.0095 offset=0.0046
+2026-04-28 05:30:59 [INFO] Epoch 64/1300 | train_loss=0.0228 | val_loss=0.0204 | COn_f1=0.7887 | COnP_f1=0.7635 | COnPOff_f1=0.4014 | sig_onset=0.0036 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:30:59 [INFO]   -> Best model saved! COnP_f1=0.7635
+2026-04-28 05:31:25 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7818 | COnP_f1=0.7519 | COnPOff_f1=0.3778
+2026-04-28 05:31:52 [INFO] Epoch 65 [83/250] loss=0.0283 onset=0.0124 frame=0.0103 offset=0.0056
+2026-04-28 05:32:19 [INFO] Epoch 65 [166/250] loss=0.0192 onset=0.0083 frame=0.0070 offset=0.0039
+2026-04-28 05:32:46 [INFO] Epoch 65 [249/250] loss=0.0185 onset=0.0078 frame=0.0070 offset=0.0038
+2026-04-28 05:35:01 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7527
+2026-04-28 05:35:11 [INFO] Epoch 65/1300 | train_loss=0.0228 | val_loss=0.0203 | COn_f1=0.7809 | COnP_f1=0.7563 | COnPOff_f1=0.3944 | sig_onset=0.0035 sig_frame=0.0134 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:35:38 [INFO] Epoch 66 [83/250] loss=0.0247 onset=0.0099 frame=0.0103 offset=0.0045
+2026-04-28 05:36:05 [INFO] Epoch 66 [166/250] loss=0.0244 onset=0.0098 frame=0.0100 offset=0.0045
+2026-04-28 05:36:32 [INFO] Epoch 66 [249/250] loss=0.0218 onset=0.0092 frame=0.0083 offset=0.0043
+2026-04-28 05:36:43 [INFO] Epoch 66/1300 | train_loss=0.0230 | val_loss=0.0202 | COn_f1=0.7849 | COnP_f1=0.7601 | COnPOff_f1=0.4313 | sig_onset=0.0033 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:37:10 [INFO] Epoch 67 [83/250] loss=0.0287 onset=0.0125 frame=0.0103 offset=0.0059
+2026-04-28 05:37:37 [INFO] Epoch 67 [166/250] loss=0.0198 onset=0.0082 frame=0.0075 offset=0.0040
+2026-04-28 05:38:04 [INFO] Epoch 67 [249/250] loss=0.0283 onset=0.0115 frame=0.0113 offset=0.0055
+2026-04-28 05:38:15 [INFO] Epoch 67/1300 | train_loss=0.0228 | val_loss=0.0203 | COn_f1=0.7840 | COnP_f1=0.7591 | COnPOff_f1=0.4579 | sig_onset=0.0034 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:38:42 [INFO] Epoch 68 [83/250] loss=0.0242 onset=0.0104 frame=0.0096 offset=0.0043
+2026-04-28 05:39:09 [INFO] Epoch 68 [166/250] loss=0.0256 onset=0.0109 frame=0.0100 offset=0.0048
+2026-04-28 05:39:36 [INFO] Epoch 68 [249/250] loss=0.0254 onset=0.0102 frame=0.0107 offset=0.0045
+2026-04-28 05:39:46 [INFO] Epoch 68/1300 | train_loss=0.0226 | val_loss=0.0202 | COn_f1=0.7826 | COnP_f1=0.7588 | COnPOff_f1=0.4234 | sig_onset=0.0032 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:40:14 [INFO] Epoch 69 [83/250] loss=0.0198 onset=0.0080 frame=0.0078 offset=0.0040
+2026-04-28 05:40:40 [INFO] Epoch 69 [166/250] loss=0.0248 onset=0.0102 frame=0.0099 offset=0.0046
+2026-04-28 05:41:07 [INFO] Epoch 69 [249/250] loss=0.0186 onset=0.0076 frame=0.0073 offset=0.0037
+2026-04-28 05:41:18 [INFO] Epoch 69/1300 | train_loss=0.0228 | val_loss=0.0203 | COn_f1=0.7829 | COnP_f1=0.7587 | COnPOff_f1=0.4157 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:41:45 [INFO] Epoch 70 [83/250] loss=0.0232 onset=0.0094 frame=0.0089 offset=0.0049
+2026-04-28 05:42:12 [INFO] Epoch 70 [166/250] loss=0.0276 onset=0.0111 frame=0.0111 offset=0.0053
+2026-04-28 05:42:39 [INFO] Epoch 70 [249/250] loss=0.0259 onset=0.0109 frame=0.0099 offset=0.0052
+2026-04-28 05:44:54 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7578
+2026-04-28 05:45:05 [INFO] Epoch 70/1300 | train_loss=0.0229 | val_loss=0.0199 | COn_f1=0.7874 | COnP_f1=0.7633 | COnPOff_f1=0.4318 | sig_onset=0.0035 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:45:32 [INFO] Epoch 71 [83/250] loss=0.0262 onset=0.0111 frame=0.0100 offset=0.0052
+2026-04-28 05:45:59 [INFO] Epoch 71 [166/250] loss=0.0180 onset=0.0075 frame=0.0070 offset=0.0035
+2026-04-28 05:46:26 [INFO] Epoch 71 [249/250] loss=0.0175 onset=0.0076 frame=0.0065 offset=0.0034
+2026-04-28 05:46:36 [INFO] Epoch 71/1300 | train_loss=0.0227 | val_loss=0.0200 | COn_f1=0.7898 | COnP_f1=0.7660 | COnPOff_f1=0.4465 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:46:36 [INFO]   -> Best model saved! COnP_f1=0.7660
+2026-04-28 05:47:02 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7854 | COnP_f1=0.7543 | COnPOff_f1=0.4266
+2026-04-28 05:47:29 [INFO] Epoch 72 [83/250] loss=0.0197 onset=0.0084 frame=0.0076 offset=0.0037
+2026-04-28 05:47:56 [INFO] Epoch 72 [166/250] loss=0.0229 onset=0.0098 frame=0.0088 offset=0.0044
+2026-04-28 05:48:23 [INFO] Epoch 72 [249/250] loss=0.0223 onset=0.0093 frame=0.0087 offset=0.0044
+2026-04-28 05:48:33 [INFO] Epoch 72/1300 | train_loss=0.0223 | val_loss=0.0199 | COn_f1=0.7881 | COnP_f1=0.7644 | COnPOff_f1=0.4232 | sig_onset=0.0033 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:49:00 [INFO] Epoch 73 [83/250] loss=0.0235 onset=0.0101 frame=0.0088 offset=0.0045
+2026-04-28 05:49:27 [INFO] Epoch 73 [166/250] loss=0.0208 onset=0.0085 frame=0.0083 offset=0.0040
+2026-04-28 05:49:54 [INFO] Epoch 73 [249/250] loss=0.0214 onset=0.0087 frame=0.0089 offset=0.0038
+2026-04-28 05:50:05 [INFO] Epoch 73/1300 | train_loss=0.0224 | val_loss=0.0198 | COn_f1=0.7856 | COnP_f1=0.7624 | COnPOff_f1=0.4376 | sig_onset=0.0036 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:50:32 [INFO] Epoch 74 [83/250] loss=0.0219 onset=0.0099 frame=0.0074 offset=0.0045
+2026-04-28 05:50:59 [INFO] Epoch 74 [166/250] loss=0.0240 onset=0.0102 frame=0.0091 offset=0.0048
+2026-04-28 05:51:26 [INFO] Epoch 74 [249/250] loss=0.0205 onset=0.0087 frame=0.0076 offset=0.0042
+2026-04-28 05:51:37 [INFO] Epoch 74/1300 | train_loss=0.0223 | val_loss=0.0200 | COn_f1=0.7840 | COnP_f1=0.7596 | COnPOff_f1=0.4228 | sig_onset=0.0032 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:52:04 [INFO] Epoch 75 [83/250] loss=0.0206 onset=0.0084 frame=0.0081 offset=0.0041
+2026-04-28 05:52:31 [INFO] Epoch 75 [166/250] loss=0.0198 onset=0.0081 frame=0.0077 offset=0.0041
+2026-04-28 05:52:58 [INFO] Epoch 75 [249/250] loss=0.0260 onset=0.0108 frame=0.0101 offset=0.0051
+2026-04-28 05:55:12 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7594
+2026-04-28 05:55:22 [INFO] Epoch 75/1300 | train_loss=0.0223 | val_loss=0.0198 | COn_f1=0.7875 | COnP_f1=0.7641 | COnPOff_f1=0.4118 | sig_onset=0.0036 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.98e-04
+2026-04-28 05:55:49 [INFO] Epoch 76 [83/250] loss=0.0250 onset=0.0103 frame=0.0098 offset=0.0049
+2026-04-28 05:56:16 [INFO] Epoch 76 [166/250] loss=0.0213 onset=0.0088 frame=0.0084 offset=0.0041
+2026-04-28 05:56:43 [INFO] Epoch 76 [249/250] loss=0.0242 onset=0.0097 frame=0.0102 offset=0.0042
+2026-04-28 05:56:54 [INFO] Epoch 76/1300 | train_loss=0.0224 | val_loss=0.0197 | COn_f1=0.7917 | COnP_f1=0.7687 | COnPOff_f1=0.4223 | sig_onset=0.0037 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 05:56:54 [INFO]   -> Best model saved! COnP_f1=0.7687
+2026-04-28 05:57:19 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7846 | COnP_f1=0.7551 | COnPOff_f1=0.4023
+2026-04-28 05:57:46 [INFO] Epoch 77 [83/250] loss=0.0229 onset=0.0089 frame=0.0096 offset=0.0044
+2026-04-28 05:58:13 [INFO] Epoch 77 [166/250] loss=0.0272 onset=0.0100 frame=0.0125 offset=0.0046
+2026-04-28 05:58:40 [INFO] Epoch 77 [249/250] loss=0.0210 onset=0.0092 frame=0.0072 offset=0.0045
+2026-04-28 05:58:51 [INFO] Epoch 77/1300 | train_loss=0.0220 | val_loss=0.0198 | COn_f1=0.7930 | COnP_f1=0.7703 | COnPOff_f1=0.4148 | sig_onset=0.0033 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 05:58:51 [INFO]   -> Best model saved! COnP_f1=0.7703
+2026-04-28 05:59:16 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7897 | COnP_f1=0.7608 | COnPOff_f1=0.3962
+2026-04-28 05:59:43 [INFO] Epoch 78 [83/250] loss=0.0266 onset=0.0118 frame=0.0094 offset=0.0054
+2026-04-28 06:00:10 [INFO] Epoch 78 [166/250] loss=0.0217 onset=0.0085 frame=0.0091 offset=0.0041
+2026-04-28 06:00:37 [INFO] Epoch 78 [249/250] loss=0.0235 onset=0.0100 frame=0.0087 offset=0.0048
+2026-04-28 06:00:48 [INFO] Epoch 78/1300 | train_loss=0.0223 | val_loss=0.0197 | COn_f1=0.7899 | COnP_f1=0.7673 | COnPOff_f1=0.4435 | sig_onset=0.0039 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:01:15 [INFO] Epoch 79 [83/250] loss=0.0220 onset=0.0092 frame=0.0085 offset=0.0043
+2026-04-28 06:01:42 [INFO] Epoch 79 [166/250] loss=0.0168 onset=0.0071 frame=0.0065 offset=0.0032
+2026-04-28 06:02:09 [INFO] Epoch 79 [249/250] loss=0.0221 onset=0.0090 frame=0.0087 offset=0.0044
+2026-04-28 06:02:19 [INFO] Epoch 79/1300 | train_loss=0.0222 | val_loss=0.0197 | COn_f1=0.7910 | COnP_f1=0.7664 | COnPOff_f1=0.4574 | sig_onset=0.0034 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:02:47 [INFO] Epoch 80 [83/250] loss=0.0239 onset=0.0099 frame=0.0088 offset=0.0051
+2026-04-28 06:03:13 [INFO] Epoch 80 [166/250] loss=0.0238 onset=0.0101 frame=0.0089 offset=0.0048
+2026-04-28 06:03:40 [INFO] Epoch 80 [249/250] loss=0.0259 onset=0.0104 frame=0.0105 offset=0.0050
+2026-04-28 06:05:55 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7629
+2026-04-28 06:06:05 [INFO] Epoch 80/1300 | train_loss=0.0220 | val_loss=0.0196 | COn_f1=0.7884 | COnP_f1=0.7669 | COnPOff_f1=0.4060 | sig_onset=0.0038 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:06:31 [INFO]   [TEST MONITOR FULL TEST:periodic_40] COn_f1=0.7816 | COnP_f1=0.7523 | COnPOff_f1=0.3868
+2026-04-28 06:06:58 [INFO] Epoch 81 [83/250] loss=0.0217 onset=0.0089 frame=0.0086 offset=0.0043
+2026-04-28 06:07:25 [INFO] Epoch 81 [166/250] loss=0.0214 onset=0.0087 frame=0.0086 offset=0.0041
+2026-04-28 06:07:52 [INFO] Epoch 81 [249/250] loss=0.0168 onset=0.0070 frame=0.0064 offset=0.0034
+2026-04-28 06:08:02 [INFO] Epoch 81/1300 | train_loss=0.0219 | val_loss=0.0197 | COn_f1=0.7961 | COnP_f1=0.7736 | COnPOff_f1=0.4321 | sig_onset=0.0033 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:08:03 [INFO]   -> Best model saved! COnP_f1=0.7736
+2026-04-28 06:08:28 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7909 | COnP_f1=0.7604 | COnPOff_f1=0.4091
+2026-04-28 06:08:55 [INFO] Epoch 82 [83/250] loss=0.0190 onset=0.0077 frame=0.0076 offset=0.0038
+2026-04-28 06:09:22 [INFO] Epoch 82 [166/250] loss=0.0175 onset=0.0074 frame=0.0065 offset=0.0036
+2026-04-28 06:09:49 [INFO] Epoch 82 [249/250] loss=0.0199 onset=0.0078 frame=0.0081 offset=0.0041
+2026-04-28 06:10:00 [INFO] Epoch 82/1300 | train_loss=0.0219 | val_loss=0.0195 | COn_f1=0.7893 | COnP_f1=0.7667 | COnPOff_f1=0.4198 | sig_onset=0.0033 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:10:27 [INFO] Epoch 83 [83/250] loss=0.0231 onset=0.0100 frame=0.0085 offset=0.0046
+2026-04-28 06:10:54 [INFO] Epoch 83 [166/250] loss=0.0198 onset=0.0081 frame=0.0076 offset=0.0040
+2026-04-28 06:11:21 [INFO] Epoch 83 [249/250] loss=0.0216 onset=0.0095 frame=0.0075 offset=0.0046
+2026-04-28 06:11:31 [INFO] Epoch 83/1300 | train_loss=0.0216 | val_loss=0.0193 | COn_f1=0.7893 | COnP_f1=0.7669 | COnPOff_f1=0.4472 | sig_onset=0.0036 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:11:58 [INFO] Epoch 84 [83/250] loss=0.0168 onset=0.0071 frame=0.0060 offset=0.0037
+2026-04-28 06:12:25 [INFO] Epoch 84 [166/250] loss=0.0219 onset=0.0093 frame=0.0082 offset=0.0044
+2026-04-28 06:12:52 [INFO] Epoch 84 [249/250] loss=0.0181 onset=0.0079 frame=0.0061 offset=0.0041
+2026-04-28 06:13:03 [INFO] Epoch 84/1300 | train_loss=0.0219 | val_loss=0.0194 | COn_f1=0.7908 | COnP_f1=0.7704 | COnPOff_f1=0.4254 | sig_onset=0.0035 sig_frame=0.0134 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:13:30 [INFO] Epoch 85 [83/250] loss=0.0206 onset=0.0093 frame=0.0068 offset=0.0045
+2026-04-28 06:13:57 [INFO] Epoch 85 [166/250] loss=0.0231 onset=0.0093 frame=0.0093 offset=0.0045
+2026-04-28 06:14:24 [INFO] Epoch 85 [249/250] loss=0.0227 onset=0.0094 frame=0.0086 offset=0.0047
+2026-04-28 06:16:38 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7656
+2026-04-28 06:16:49 [INFO] Epoch 85/1300 | train_loss=0.0217 | val_loss=0.0190 | COn_f1=0.7911 | COnP_f1=0.7704 | COnPOff_f1=0.4353 | sig_onset=0.0034 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:17:16 [INFO] Epoch 86 [83/250] loss=0.0170 onset=0.0073 frame=0.0064 offset=0.0033
+2026-04-28 06:17:43 [INFO] Epoch 86 [166/250] loss=0.0212 onset=0.0087 frame=0.0081 offset=0.0045
+2026-04-28 06:18:10 [INFO] Epoch 86 [249/250] loss=0.0217 onset=0.0093 frame=0.0082 offset=0.0042
+2026-04-28 06:18:20 [INFO] Epoch 86/1300 | train_loss=0.0217 | val_loss=0.0193 | COn_f1=0.8011 | COnP_f1=0.7794 | COnPOff_f1=0.4808 | sig_onset=0.0035 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:18:20 [INFO]   -> Best model saved! COnP_f1=0.7794
+2026-04-28 06:18:46 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7921 | COnP_f1=0.7622 | COnPOff_f1=0.4458
+2026-04-28 06:19:13 [INFO] Epoch 87 [83/250] loss=0.0175 onset=0.0076 frame=0.0060 offset=0.0039
+2026-04-28 06:19:40 [INFO] Epoch 87 [166/250] loss=0.0191 onset=0.0077 frame=0.0073 offset=0.0041
+2026-04-28 06:20:07 [INFO] Epoch 87 [249/250] loss=0.0247 onset=0.0112 frame=0.0086 offset=0.0049
+2026-04-28 06:20:17 [INFO] Epoch 87/1300 | train_loss=0.0218 | val_loss=0.0194 | COn_f1=0.7941 | COnP_f1=0.7714 | COnPOff_f1=0.4770 | sig_onset=0.0036 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:20:44 [INFO] Epoch 88 [83/250] loss=0.0205 onset=0.0081 frame=0.0080 offset=0.0044
+2026-04-28 06:21:11 [INFO] Epoch 88 [166/250] loss=0.0233 onset=0.0099 frame=0.0088 offset=0.0046
+2026-04-28 06:21:38 [INFO] Epoch 88 [249/250] loss=0.0166 onset=0.0067 frame=0.0064 offset=0.0035
+2026-04-28 06:21:49 [INFO] Epoch 88/1300 | train_loss=0.0214 | val_loss=0.0191 | COn_f1=0.7921 | COnP_f1=0.7701 | COnPOff_f1=0.4498 | sig_onset=0.0035 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:22:16 [INFO] Epoch 89 [83/250] loss=0.0205 onset=0.0090 frame=0.0071 offset=0.0044
+2026-04-28 06:22:43 [INFO] Epoch 89 [166/250] loss=0.0223 onset=0.0100 frame=0.0079 offset=0.0044
+2026-04-28 06:23:10 [INFO] Epoch 89 [249/250] loss=0.0274 onset=0.0116 frame=0.0104 offset=0.0054
+2026-04-28 06:23:21 [INFO] Epoch 89/1300 | train_loss=0.0215 | val_loss=0.0191 | COn_f1=0.7935 | COnP_f1=0.7704 | COnPOff_f1=0.4388 | sig_onset=0.0036 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.97e-04
+2026-04-28 06:23:48 [INFO] Epoch 90 [83/250] loss=0.0221 onset=0.0094 frame=0.0084 offset=0.0043
+2026-04-28 06:24:15 [INFO] Epoch 90 [166/250] loss=0.0216 onset=0.0097 frame=0.0073 offset=0.0046
+2026-04-28 06:24:42 [INFO] Epoch 90 [249/250] loss=0.0231 onset=0.0104 frame=0.0082 offset=0.0045
+2026-04-28 06:26:55 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7697
+2026-04-28 06:27:06 [INFO] Epoch 90/1300 | train_loss=0.0217 | val_loss=0.0193 | COn_f1=0.7978 | COnP_f1=0.7748 | COnPOff_f1=0.4680 | sig_onset=0.0036 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:27:33 [INFO] Epoch 91 [83/250] loss=0.0199 onset=0.0081 frame=0.0078 offset=0.0040
+2026-04-28 06:28:00 [INFO] Epoch 91 [166/250] loss=0.0168 onset=0.0072 frame=0.0059 offset=0.0037
+2026-04-28 06:28:27 [INFO] Epoch 91 [249/250] loss=0.0169 onset=0.0073 frame=0.0062 offset=0.0034
+2026-04-28 06:28:37 [INFO] Epoch 91/1300 | train_loss=0.0216 | val_loss=0.0192 | COn_f1=0.7912 | COnP_f1=0.7681 | COnPOff_f1=0.4079 | sig_onset=0.0032 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:29:05 [INFO] Epoch 92 [83/250] loss=0.0177 onset=0.0069 frame=0.0072 offset=0.0036
+2026-04-28 06:29:31 [INFO] Epoch 92 [166/250] loss=0.0220 onset=0.0085 frame=0.0093 offset=0.0042
+2026-04-28 06:29:58 [INFO] Epoch 92 [249/250] loss=0.0156 onset=0.0062 frame=0.0061 offset=0.0033
+2026-04-28 06:30:09 [INFO] Epoch 92/1300 | train_loss=0.0215 | val_loss=0.0193 | COn_f1=0.7946 | COnP_f1=0.7716 | COnPOff_f1=0.4240 | sig_onset=0.0035 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:30:36 [INFO] Epoch 93 [83/250] loss=0.0176 onset=0.0071 frame=0.0071 offset=0.0034
+2026-04-28 06:31:03 [INFO] Epoch 93 [166/250] loss=0.0251 onset=0.0097 frame=0.0104 offset=0.0051
+2026-04-28 06:31:30 [INFO] Epoch 93 [249/250] loss=0.0215 onset=0.0091 frame=0.0079 offset=0.0045
+2026-04-28 06:31:41 [INFO] Epoch 93/1300 | train_loss=0.0213 | val_loss=0.0190 | COn_f1=0.7995 | COnP_f1=0.7775 | COnPOff_f1=0.4396 | sig_onset=0.0031 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:32:08 [INFO] Epoch 94 [83/250] loss=0.0221 onset=0.0094 frame=0.0081 offset=0.0046
+2026-04-28 06:32:35 [INFO] Epoch 94 [166/250] loss=0.0204 onset=0.0080 frame=0.0084 offset=0.0040
+2026-04-28 06:33:02 [INFO] Epoch 94 [249/250] loss=0.0216 onset=0.0098 frame=0.0072 offset=0.0046
+2026-04-28 06:33:12 [INFO] Epoch 94/1300 | train_loss=0.0217 | val_loss=0.0189 | COn_f1=0.7971 | COnP_f1=0.7758 | COnPOff_f1=0.4559 | sig_onset=0.0035 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:33:40 [INFO] Epoch 95 [83/250] loss=0.0223 onset=0.0102 frame=0.0076 offset=0.0045
+2026-04-28 06:34:06 [INFO] Epoch 95 [166/250] loss=0.0258 onset=0.0108 frame=0.0101 offset=0.0050
+2026-04-28 06:34:33 [INFO] Epoch 95 [249/250] loss=0.0175 onset=0.0071 frame=0.0068 offset=0.0037
+2026-04-28 06:36:46 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7694
+2026-04-28 06:36:56 [INFO] Epoch 95/1300 | train_loss=0.0213 | val_loss=0.0190 | COn_f1=0.7964 | COnP_f1=0.7752 | COnPOff_f1=0.4552 | sig_onset=0.0035 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:37:23 [INFO] Epoch 96 [83/250] loss=0.0185 onset=0.0077 frame=0.0070 offset=0.0038
+2026-04-28 06:37:50 [INFO] Epoch 96 [166/250] loss=0.0232 onset=0.0100 frame=0.0085 offset=0.0048
+2026-04-28 06:38:17 [INFO] Epoch 96 [249/250] loss=0.0244 onset=0.0105 frame=0.0092 offset=0.0047
+2026-04-28 06:38:28 [INFO] Epoch 96/1300 | train_loss=0.0213 | val_loss=0.0187 | COn_f1=0.7978 | COnP_f1=0.7768 | COnPOff_f1=0.4703 | sig_onset=0.0037 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:38:55 [INFO] Epoch 97 [83/250] loss=0.0249 onset=0.0102 frame=0.0098 offset=0.0049
+2026-04-28 06:39:22 [INFO] Epoch 97 [166/250] loss=0.0255 onset=0.0112 frame=0.0094 offset=0.0050
+2026-04-28 06:39:49 [INFO] Epoch 97 [249/250] loss=0.0230 onset=0.0090 frame=0.0097 offset=0.0042
+2026-04-28 06:39:59 [INFO] Epoch 97/1300 | train_loss=0.0210 | val_loss=0.0190 | COn_f1=0.8007 | COnP_f1=0.7791 | COnPOff_f1=0.4575 | sig_onset=0.0033 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:40:26 [INFO] Epoch 98 [83/250] loss=0.0217 onset=0.0094 frame=0.0076 offset=0.0048
+2026-04-28 06:40:53 [INFO] Epoch 98 [166/250] loss=0.0188 onset=0.0078 frame=0.0072 offset=0.0037
+2026-04-28 06:41:20 [INFO] Epoch 98 [249/250] loss=0.0199 onset=0.0081 frame=0.0076 offset=0.0042
+2026-04-28 06:41:31 [INFO] Epoch 98/1300 | train_loss=0.0210 | val_loss=0.0190 | COn_f1=0.8025 | COnP_f1=0.7794 | COnPOff_f1=0.4714 | sig_onset=0.0029 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:41:58 [INFO] Epoch 99 [83/250] loss=0.0278 onset=0.0115 frame=0.0111 offset=0.0052
+2026-04-28 06:42:25 [INFO] Epoch 99 [166/250] loss=0.0180 onset=0.0073 frame=0.0068 offset=0.0039
+2026-04-28 06:42:52 [INFO] Epoch 99 [249/250] loss=0.0210 onset=0.0087 frame=0.0083 offset=0.0040
+2026-04-28 06:43:03 [INFO] Epoch 99/1300 | train_loss=0.0214 | val_loss=0.0187 | COn_f1=0.7924 | COnP_f1=0.7724 | COnPOff_f1=0.4353 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:43:30 [INFO] Epoch 100 [83/250] loss=0.0201 onset=0.0084 frame=0.0075 offset=0.0042
+2026-04-28 06:43:57 [INFO] Epoch 100 [166/250] loss=0.0173 onset=0.0070 frame=0.0066 offset=0.0037
+2026-04-28 06:44:24 [INFO] Epoch 100 [249/250] loss=0.0155 onset=0.0061 frame=0.0062 offset=0.0032
+2026-04-28 06:46:36 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7726
+2026-04-28 06:46:47 [INFO] Epoch 100/1300 | train_loss=0.0212 | val_loss=0.0189 | COn_f1=0.7993 | COnP_f1=0.7777 | COnPOff_f1=0.4675 | sig_onset=0.0031 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:47:14 [INFO] Epoch 101 [83/250] loss=0.0215 onset=0.0092 frame=0.0082 offset=0.0041
+2026-04-28 06:47:41 [INFO] Epoch 101 [166/250] loss=0.0173 onset=0.0063 frame=0.0077 offset=0.0033
+2026-04-28 06:48:08 [INFO] Epoch 101 [249/250] loss=0.0197 onset=0.0080 frame=0.0079 offset=0.0039
+2026-04-28 06:48:18 [INFO] Epoch 101/1300 | train_loss=0.0209 | val_loss=0.0189 | COn_f1=0.8024 | COnP_f1=0.7808 | COnPOff_f1=0.4449 | sig_onset=0.0033 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.96e-04
+2026-04-28 06:48:19 [INFO]   -> Best model saved! COnP_f1=0.7808
+2026-04-28 06:48:44 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7925 | COnP_f1=0.7612 | COnPOff_f1=0.4119
+2026-04-28 06:49:11 [INFO] Epoch 102 [83/250] loss=0.0211 onset=0.0091 frame=0.0077 offset=0.0043
+2026-04-28 06:49:38 [INFO] Epoch 102 [166/250] loss=0.0207 onset=0.0086 frame=0.0079 offset=0.0042
+2026-04-28 06:50:05 [INFO] Epoch 102 [249/250] loss=0.0220 onset=0.0093 frame=0.0077 offset=0.0049
+2026-04-28 06:50:15 [INFO] Epoch 102/1300 | train_loss=0.0210 | val_loss=0.0185 | COn_f1=0.7995 | COnP_f1=0.7787 | COnPOff_f1=0.4529 | sig_onset=0.0034 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 06:50:43 [INFO] Epoch 103 [83/250] loss=0.0213 onset=0.0092 frame=0.0078 offset=0.0043
+2026-04-28 06:51:10 [INFO] Epoch 103 [166/250] loss=0.0228 onset=0.0095 frame=0.0084 offset=0.0048
+2026-04-28 06:51:36 [INFO] Epoch 103 [249/250] loss=0.0181 onset=0.0074 frame=0.0070 offset=0.0037
+2026-04-28 06:51:47 [INFO] Epoch 103/1300 | train_loss=0.0209 | val_loss=0.0184 | COn_f1=0.8031 | COnP_f1=0.7829 | COnPOff_f1=0.4698 | sig_onset=0.0033 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 06:51:47 [INFO]   -> Best model saved! COnP_f1=0.7829
+2026-04-28 06:52:12 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7934 | COnP_f1=0.7642 | COnPOff_f1=0.4379
+2026-04-28 06:52:40 [INFO] Epoch 104 [83/250] loss=0.0228 onset=0.0101 frame=0.0079 offset=0.0048
+2026-04-28 06:53:06 [INFO] Epoch 104 [166/250] loss=0.0191 onset=0.0076 frame=0.0078 offset=0.0038
+2026-04-28 06:53:33 [INFO] Epoch 104 [249/250] loss=0.0196 onset=0.0081 frame=0.0072 offset=0.0043
+2026-04-28 06:53:44 [INFO] Epoch 104/1300 | train_loss=0.0209 | val_loss=0.0187 | COn_f1=0.7950 | COnP_f1=0.7764 | COnPOff_f1=0.4134 | sig_onset=0.0036 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 06:54:11 [INFO] Epoch 105 [83/250] loss=0.0184 onset=0.0078 frame=0.0070 offset=0.0037
+2026-04-28 06:54:38 [INFO] Epoch 105 [166/250] loss=0.0207 onset=0.0093 frame=0.0070 offset=0.0044
+2026-04-28 06:55:05 [INFO] Epoch 105 [249/250] loss=0.0216 onset=0.0091 frame=0.0084 offset=0.0041
+2026-04-28 06:57:18 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7771
+2026-04-28 06:57:28 [INFO] Epoch 105/1300 | train_loss=0.0210 | val_loss=0.0185 | COn_f1=0.8023 | COnP_f1=0.7816 | COnPOff_f1=0.4412 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 06:57:55 [INFO] Epoch 106 [83/250] loss=0.0214 onset=0.0088 frame=0.0080 offset=0.0046
+2026-04-28 06:58:22 [INFO] Epoch 106 [166/250] loss=0.0230 onset=0.0101 frame=0.0083 offset=0.0046
+2026-04-28 06:58:49 [INFO] Epoch 106 [249/250] loss=0.0207 onset=0.0087 frame=0.0077 offset=0.0043
+2026-04-28 06:59:00 [INFO] Epoch 106/1300 | train_loss=0.0212 | val_loss=0.0185 | COn_f1=0.7970 | COnP_f1=0.7768 | COnPOff_f1=0.4328 | sig_onset=0.0035 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 06:59:27 [INFO] Epoch 107 [83/250] loss=0.0184 onset=0.0078 frame=0.0066 offset=0.0040
+2026-04-28 06:59:54 [INFO] Epoch 107 [166/250] loss=0.0264 onset=0.0112 frame=0.0104 offset=0.0047
+2026-04-28 07:00:21 [INFO] Epoch 107 [249/250] loss=0.0187 onset=0.0080 frame=0.0071 offset=0.0037
+2026-04-28 07:00:32 [INFO] Epoch 107/1300 | train_loss=0.0207 | val_loss=0.0184 | COn_f1=0.8010 | COnP_f1=0.7806 | COnPOff_f1=0.4519 | sig_onset=0.0034 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 07:00:59 [INFO] Epoch 108 [83/250] loss=0.0171 onset=0.0075 frame=0.0058 offset=0.0038
+2026-04-28 07:01:26 [INFO] Epoch 108 [166/250] loss=0.0228 onset=0.0102 frame=0.0077 offset=0.0049
+2026-04-28 07:01:53 [INFO] Epoch 108 [249/250] loss=0.0194 onset=0.0083 frame=0.0072 offset=0.0039
+2026-04-28 07:02:03 [INFO] Epoch 108/1300 | train_loss=0.0208 | val_loss=0.0188 | COn_f1=0.7948 | COnP_f1=0.7765 | COnPOff_f1=0.4219 | sig_onset=0.0036 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 07:02:30 [INFO] Epoch 109 [83/250] loss=0.0224 onset=0.0093 frame=0.0084 offset=0.0047
+2026-04-28 07:02:57 [INFO] Epoch 109 [166/250] loss=0.0202 onset=0.0086 frame=0.0074 offset=0.0042
+2026-04-28 07:03:24 [INFO] Epoch 109 [249/250] loss=0.0226 onset=0.0097 frame=0.0085 offset=0.0044
+2026-04-28 07:03:35 [INFO] Epoch 109/1300 | train_loss=0.0207 | val_loss=0.0186 | COn_f1=0.7966 | COnP_f1=0.7770 | COnPOff_f1=0.4624 | sig_onset=0.0030 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 07:04:02 [INFO] Epoch 110 [83/250] loss=0.0188 onset=0.0077 frame=0.0069 offset=0.0042
+2026-04-28 07:04:29 [INFO] Epoch 110 [166/250] loss=0.0187 onset=0.0081 frame=0.0066 offset=0.0039
+2026-04-28 07:04:56 [INFO] Epoch 110 [249/250] loss=0.0207 onset=0.0090 frame=0.0070 offset=0.0046
+2026-04-28 07:07:10 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7788
+2026-04-28 07:07:20 [INFO] Epoch 110/1300 | train_loss=0.0210 | val_loss=0.0182 | COn_f1=0.8034 | COnP_f1=0.7835 | COnPOff_f1=0.4505 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 07:07:20 [INFO]   -> Best model saved! COnP_f1=0.7835
+2026-04-28 07:07:46 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7929 | COnP_f1=0.7629 | COnPOff_f1=0.4110
+2026-04-28 07:08:13 [INFO] Epoch 111 [83/250] loss=0.0205 onset=0.0088 frame=0.0072 offset=0.0045
+2026-04-28 07:08:40 [INFO] Epoch 111 [166/250] loss=0.0222 onset=0.0101 frame=0.0076 offset=0.0046
+2026-04-28 07:09:06 [INFO] Epoch 111 [249/250] loss=0.0202 onset=0.0081 frame=0.0077 offset=0.0043
+2026-04-28 07:09:17 [INFO] Epoch 111/1300 | train_loss=0.0207 | val_loss=0.0181 | COn_f1=0.8071 | COnP_f1=0.7859 | COnPOff_f1=0.4698 | sig_onset=0.0035 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 07:09:17 [INFO]   -> Best model saved! COnP_f1=0.7859
+2026-04-28 07:09:43 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7947 | COnP_f1=0.7652 | COnPOff_f1=0.4274
+2026-04-28 07:10:10 [INFO] Epoch 112 [83/250] loss=0.0198 onset=0.0085 frame=0.0070 offset=0.0043
+2026-04-28 07:10:37 [INFO] Epoch 112 [166/250] loss=0.0189 onset=0.0078 frame=0.0069 offset=0.0042
+2026-04-28 07:11:03 [INFO] Epoch 112 [249/250] loss=0.0195 onset=0.0080 frame=0.0075 offset=0.0040
+2026-04-28 07:11:14 [INFO] Epoch 112/1300 | train_loss=0.0205 | val_loss=0.0183 | COn_f1=0.7993 | COnP_f1=0.7803 | COnPOff_f1=0.4443 | sig_onset=0.0034 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.95e-04
+2026-04-28 07:11:41 [INFO] Epoch 113 [83/250] loss=0.0198 onset=0.0079 frame=0.0081 offset=0.0038
+2026-04-28 07:12:08 [INFO] Epoch 113 [166/250] loss=0.0235 onset=0.0099 frame=0.0084 offset=0.0052
+2026-04-28 07:12:35 [INFO] Epoch 113 [249/250] loss=0.0179 onset=0.0075 frame=0.0068 offset=0.0037
+2026-04-28 07:12:46 [INFO] Epoch 113/1300 | train_loss=0.0205 | val_loss=0.0185 | COn_f1=0.7994 | COnP_f1=0.7799 | COnPOff_f1=0.4743 | sig_onset=0.0035 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.94e-04
+2026-04-28 07:13:13 [INFO] Epoch 114 [83/250] loss=0.0223 onset=0.0096 frame=0.0085 offset=0.0042
+2026-04-28 07:13:40 [INFO] Epoch 114 [166/250] loss=0.0232 onset=0.0089 frame=0.0097 offset=0.0046
+2026-04-28 07:14:07 [INFO] Epoch 114 [249/250] loss=0.0247 onset=0.0104 frame=0.0091 offset=0.0051
+2026-04-28 07:14:18 [INFO] Epoch 114/1300 | train_loss=0.0206 | val_loss=0.0183 | COn_f1=0.8042 | COnP_f1=0.7846 | COnPOff_f1=0.4705 | sig_onset=0.0032 sig_frame=0.0127 | thresh(on=0.50,fr=0.40) | lr=2.94e-04
+2026-04-28 07:14:45 [INFO] Epoch 115 [83/250] loss=0.0234 onset=0.0100 frame=0.0085 offset=0.0049
+2026-04-28 07:15:12 [INFO] Epoch 115 [166/250] loss=0.0189 onset=0.0072 frame=0.0080 offset=0.0037
+2026-04-28 07:15:39 [INFO] Epoch 115 [249/250] loss=0.0233 onset=0.0095 frame=0.0094 offset=0.0044
+2026-04-28 07:17:51 [INFO]   Threshold search: best on=0.50, fr=0.35, COnP_f1=0.7794
+2026-04-28 07:18:02 [INFO] Epoch 115/1300 | train_loss=0.0205 | val_loss=0.0181 | COn_f1=0.8019 | COnP_f1=0.7840 | COnPOff_f1=0.4183 | sig_onset=0.0034 sig_frame=0.0129 | thresh(on=0.50,fr=0.35) | lr=2.94e-04
+2026-04-28 07:18:29 [INFO] Epoch 116 [83/250] loss=0.0201 onset=0.0085 frame=0.0074 offset=0.0042
+2026-04-28 07:18:56 [INFO] Epoch 116 [166/250] loss=0.0151 onset=0.0063 frame=0.0057 offset=0.0031
+2026-04-28 07:19:23 [INFO] Epoch 116 [249/250] loss=0.0138 onset=0.0057 frame=0.0050 offset=0.0031
+2026-04-28 07:19:33 [INFO] Epoch 116/1300 | train_loss=0.0206 | val_loss=0.0182 | COn_f1=0.8039 | COnP_f1=0.7844 | COnPOff_f1=0.4558 | sig_onset=0.0031 sig_frame=0.0129 | thresh(on=0.50,fr=0.35) | lr=2.94e-04
+2026-04-28 07:20:01 [INFO] Epoch 117 [83/250] loss=0.0226 onset=0.0096 frame=0.0083 offset=0.0047
+2026-04-28 07:20:27 [INFO] Epoch 117 [166/250] loss=0.0151 onset=0.0063 frame=0.0057 offset=0.0031
+2026-04-28 07:20:54 [INFO] Epoch 117 [249/250] loss=0.0247 onset=0.0099 frame=0.0099 offset=0.0049
+2026-04-28 07:21:05 [INFO] Epoch 117/1300 | train_loss=0.0204 | val_loss=0.0180 | COn_f1=0.8044 | COnP_f1=0.7850 | COnPOff_f1=0.4605 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.50,fr=0.35) | lr=2.94e-04
+2026-04-28 07:21:32 [INFO] Epoch 118 [83/250] loss=0.0243 onset=0.0102 frame=0.0090 offset=0.0051
+2026-04-28 07:21:59 [INFO] Epoch 118 [166/250] loss=0.0250 onset=0.0107 frame=0.0094 offset=0.0049
+2026-04-28 07:22:26 [INFO] Epoch 118 [249/250] loss=0.0231 onset=0.0096 frame=0.0089 offset=0.0046
+2026-04-28 07:22:37 [INFO] Epoch 118/1300 | train_loss=0.0205 | val_loss=0.0179 | COn_f1=0.8071 | COnP_f1=0.7876 | COnPOff_f1=0.4465 | sig_onset=0.0033 sig_frame=0.0127 | thresh(on=0.50,fr=0.35) | lr=2.94e-04
+2026-04-28 07:22:37 [INFO]   -> Best model saved! COnP_f1=0.7876
+2026-04-28 07:23:02 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7934 | COnP_f1=0.7647 | COnPOff_f1=0.4122
+2026-04-28 07:23:29 [INFO] Epoch 119 [83/250] loss=0.0152 onset=0.0066 frame=0.0053 offset=0.0032
+2026-04-28 07:23:56 [INFO] Epoch 119 [166/250] loss=0.0191 onset=0.0086 frame=0.0065 offset=0.0040
+2026-04-28 07:24:23 [INFO] Epoch 119 [249/250] loss=0.0199 onset=0.0081 frame=0.0077 offset=0.0042
+2026-04-28 07:24:34 [INFO] Epoch 119/1300 | train_loss=0.0204 | val_loss=0.0180 | COn_f1=0.8053 | COnP_f1=0.7863 | COnPOff_f1=0.4270 | sig_onset=0.0034 sig_frame=0.0132 | thresh(on=0.50,fr=0.35) | lr=2.94e-04
+2026-04-28 07:25:01 [INFO] Epoch 120 [83/250] loss=0.0196 onset=0.0074 frame=0.0083 offset=0.0039
+2026-04-28 07:25:28 [INFO] Epoch 120 [166/250] loss=0.0210 onset=0.0092 frame=0.0075 offset=0.0043
+2026-04-28 07:25:55 [INFO] Epoch 120 [249/250] loss=0.0210 onset=0.0089 frame=0.0074 offset=0.0047
+2026-04-28 07:28:07 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7828
+2026-04-28 07:28:18 [INFO] Epoch 120/1300 | train_loss=0.0205 | val_loss=0.0180 | COn_f1=0.8075 | COnP_f1=0.7863 | COnPOff_f1=0.4848 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.94e-04
+2026-04-28 07:28:43 [INFO]   [TEST MONITOR FULL TEST:periodic_40] COn_f1=0.7935 | COnP_f1=0.7637 | COnPOff_f1=0.4429
+2026-04-28 07:29:10 [INFO] Epoch 121 [83/250] loss=0.0231 onset=0.0093 frame=0.0091 offset=0.0047
+2026-04-28 07:29:37 [INFO] Epoch 121 [166/250] loss=0.0189 onset=0.0078 frame=0.0068 offset=0.0042
+2026-04-28 07:30:04 [INFO] Epoch 121 [249/250] loss=0.0208 onset=0.0086 frame=0.0079 offset=0.0043
+2026-04-28 07:30:14 [INFO] Epoch 121/1300 | train_loss=0.0205 | val_loss=0.0178 | COn_f1=0.8094 | COnP_f1=0.7906 | COnPOff_f1=0.4852 | sig_onset=0.0033 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.94e-04
+2026-04-28 07:30:14 [INFO]   -> Best model saved! COnP_f1=0.7906
+2026-04-28 07:30:40 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7980 | COnP_f1=0.7689 | COnPOff_f1=0.4456
+2026-04-28 07:31:07 [INFO] Epoch 122 [83/250] loss=0.0202 onset=0.0084 frame=0.0079 offset=0.0039
+2026-04-28 07:31:34 [INFO] Epoch 122 [166/250] loss=0.0219 onset=0.0097 frame=0.0077 offset=0.0046
+2026-04-28 07:32:01 [INFO] Epoch 122 [249/250] loss=0.0224 onset=0.0091 frame=0.0089 offset=0.0045
+2026-04-28 07:32:11 [INFO] Epoch 122/1300 | train_loss=0.0203 | val_loss=0.0181 | COn_f1=0.8044 | COnP_f1=0.7848 | COnPOff_f1=0.5014 | sig_onset=0.0033 sig_frame=0.0125 | thresh(on=0.50,fr=0.40) | lr=2.94e-04
+2026-04-28 07:32:38 [INFO] Epoch 123 [83/250] loss=0.0242 onset=0.0099 frame=0.0095 offset=0.0048
+2026-04-28 07:33:05 [INFO] Epoch 123 [166/250] loss=0.0187 onset=0.0079 frame=0.0068 offset=0.0040
+2026-04-28 07:33:32 [INFO] Epoch 123 [249/250] loss=0.0192 onset=0.0083 frame=0.0068 offset=0.0042
+2026-04-28 07:33:43 [INFO] Epoch 123/1300 | train_loss=0.0201 | val_loss=0.0178 | COn_f1=0.8045 | COnP_f1=0.7872 | COnPOff_f1=0.4482 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:34:10 [INFO] Epoch 124 [83/250] loss=0.0192 onset=0.0080 frame=0.0068 offset=0.0044
+2026-04-28 07:34:37 [INFO] Epoch 124 [166/250] loss=0.0225 onset=0.0094 frame=0.0082 offset=0.0049
+2026-04-28 07:35:04 [INFO] Epoch 124 [249/250] loss=0.0192 onset=0.0075 frame=0.0078 offset=0.0038
+2026-04-28 07:35:15 [INFO] Epoch 124/1300 | train_loss=0.0202 | val_loss=0.0179 | COn_f1=0.8031 | COnP_f1=0.7847 | COnPOff_f1=0.4637 | sig_onset=0.0029 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:35:42 [INFO] Epoch 125 [83/250] loss=0.0158 onset=0.0064 frame=0.0057 offset=0.0037
+2026-04-28 07:36:09 [INFO] Epoch 125 [166/250] loss=0.0203 onset=0.0086 frame=0.0075 offset=0.0043
+2026-04-28 07:36:36 [INFO] Epoch 125 [249/250] loss=0.0255 onset=0.0114 frame=0.0089 offset=0.0052
+2026-04-28 07:38:49 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7861
+2026-04-28 07:39:00 [INFO] Epoch 125/1300 | train_loss=0.0201 | val_loss=0.0177 | COn_f1=0.8082 | COnP_f1=0.7905 | COnPOff_f1=0.4457 | sig_onset=0.0033 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:39:27 [INFO] Epoch 126 [83/250] loss=0.0249 onset=0.0099 frame=0.0102 offset=0.0047
+2026-04-28 07:39:54 [INFO] Epoch 126 [166/250] loss=0.0180 onset=0.0080 frame=0.0058 offset=0.0041
+2026-04-28 07:40:21 [INFO] Epoch 126 [249/250] loss=0.0217 onset=0.0091 frame=0.0080 offset=0.0045
+2026-04-28 07:40:31 [INFO] Epoch 126/1300 | train_loss=0.0202 | val_loss=0.0178 | COn_f1=0.8093 | COnP_f1=0.7903 | COnPOff_f1=0.4810 | sig_onset=0.0032 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:40:58 [INFO] Epoch 127 [83/250] loss=0.0185 onset=0.0082 frame=0.0062 offset=0.0041
+2026-04-28 07:41:25 [INFO] Epoch 127 [166/250] loss=0.0212 onset=0.0093 frame=0.0076 offset=0.0043
+2026-04-28 07:41:52 [INFO] Epoch 127 [249/250] loss=0.0192 onset=0.0076 frame=0.0077 offset=0.0039
+2026-04-28 07:42:03 [INFO] Epoch 127/1300 | train_loss=0.0199 | val_loss=0.0181 | COn_f1=0.8076 | COnP_f1=0.7874 | COnPOff_f1=0.4923 | sig_onset=0.0029 sig_frame=0.0126 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:42:30 [INFO] Epoch 128 [83/250] loss=0.0191 onset=0.0082 frame=0.0067 offset=0.0042
+2026-04-28 07:42:57 [INFO] Epoch 128 [166/250] loss=0.0218 onset=0.0091 frame=0.0082 offset=0.0045
+2026-04-28 07:43:24 [INFO] Epoch 128 [249/250] loss=0.0242 onset=0.0100 frame=0.0093 offset=0.0049
+2026-04-28 07:43:35 [INFO] Epoch 128/1300 | train_loss=0.0199 | val_loss=0.0178 | COn_f1=0.8126 | COnP_f1=0.7952 | COnPOff_f1=0.4738 | sig_onset=0.0031 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:43:35 [INFO]   -> Best model saved! COnP_f1=0.7952
+2026-04-28 07:44:00 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7992 | COnP_f1=0.7701 | COnPOff_f1=0.4328
+2026-04-28 07:44:27 [INFO] Epoch 129 [83/250] loss=0.0167 onset=0.0067 frame=0.0066 offset=0.0033
+2026-04-28 07:44:54 [INFO] Epoch 129 [166/250] loss=0.0204 onset=0.0084 frame=0.0077 offset=0.0043
+2026-04-28 07:45:21 [INFO] Epoch 129 [249/250] loss=0.0206 onset=0.0090 frame=0.0072 offset=0.0044
+2026-04-28 07:45:32 [INFO] Epoch 129/1300 | train_loss=0.0198 | val_loss=0.0178 | COn_f1=0.8107 | COnP_f1=0.7921 | COnPOff_f1=0.4709 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:45:59 [INFO] Epoch 130 [83/250] loss=0.0224 onset=0.0092 frame=0.0088 offset=0.0044
+2026-04-28 07:46:26 [INFO] Epoch 130 [166/250] loss=0.0184 onset=0.0077 frame=0.0065 offset=0.0041
+2026-04-28 07:46:53 [INFO] Epoch 130 [249/250] loss=0.0198 onset=0.0082 frame=0.0077 offset=0.0038
+2026-04-28 07:49:05 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7854
+2026-04-28 07:49:15 [INFO] Epoch 130/1300 | train_loss=0.0199 | val_loss=0.0178 | COn_f1=0.8068 | COnP_f1=0.7888 | COnPOff_f1=0.4583 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:49:43 [INFO] Epoch 131 [83/250] loss=0.0174 onset=0.0072 frame=0.0063 offset=0.0039
+2026-04-28 07:50:09 [INFO] Epoch 131 [166/250] loss=0.0191 onset=0.0080 frame=0.0073 offset=0.0038
+2026-04-28 07:50:36 [INFO] Epoch 131 [249/250] loss=0.0212 onset=0.0091 frame=0.0078 offset=0.0042
+2026-04-28 07:50:47 [INFO] Epoch 131/1300 | train_loss=0.0200 | val_loss=0.0176 | COn_f1=0.8073 | COnP_f1=0.7898 | COnPOff_f1=0.4319 | sig_onset=0.0034 sig_frame=0.0134 | thresh(on=0.50,fr=0.40) | lr=2.93e-04
+2026-04-28 07:51:14 [INFO] Epoch 132 [83/250] loss=0.0159 onset=0.0063 frame=0.0064 offset=0.0031
+2026-04-28 07:51:41 [INFO] Epoch 132 [166/250] loss=0.0229 onset=0.0095 frame=0.0088 offset=0.0045
+2026-04-28 07:52:08 [INFO] Epoch 132 [249/250] loss=0.0230 onset=0.0097 frame=0.0083 offset=0.0050
+2026-04-28 07:52:19 [INFO] Epoch 132/1300 | train_loss=0.0199 | val_loss=0.0176 | COn_f1=0.8084 | COnP_f1=0.7899 | COnPOff_f1=0.4440 | sig_onset=0.0032 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 07:52:46 [INFO] Epoch 133 [83/250] loss=0.0208 onset=0.0082 frame=0.0083 offset=0.0043
+2026-04-28 07:53:13 [INFO] Epoch 133 [166/250] loss=0.0186 onset=0.0077 frame=0.0071 offset=0.0038
+2026-04-28 07:53:40 [INFO] Epoch 133 [249/250] loss=0.0204 onset=0.0085 frame=0.0075 offset=0.0043
+2026-04-28 07:53:50 [INFO] Epoch 133/1300 | train_loss=0.0198 | val_loss=0.0174 | COn_f1=0.8108 | COnP_f1=0.7938 | COnPOff_f1=0.4905 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 07:54:18 [INFO] Epoch 134 [83/250] loss=0.0219 onset=0.0091 frame=0.0085 offset=0.0043
+2026-04-28 07:54:45 [INFO] Epoch 134 [166/250] loss=0.0206 onset=0.0089 frame=0.0077 offset=0.0040
+2026-04-28 07:55:11 [INFO] Epoch 134 [249/250] loss=0.0215 onset=0.0086 frame=0.0085 offset=0.0044
+2026-04-28 07:55:22 [INFO] Epoch 134/1300 | train_loss=0.0196 | val_loss=0.0176 | COn_f1=0.8029 | COnP_f1=0.7847 | COnPOff_f1=0.4666 | sig_onset=0.0035 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 07:55:49 [INFO] Epoch 135 [83/250] loss=0.0219 onset=0.0088 frame=0.0086 offset=0.0045
+2026-04-28 07:56:16 [INFO] Epoch 135 [166/250] loss=0.0208 onset=0.0091 frame=0.0073 offset=0.0044
+2026-04-28 07:56:43 [INFO] Epoch 135 [249/250] loss=0.0189 onset=0.0079 frame=0.0070 offset=0.0041
+2026-04-28 07:58:55 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7879
+2026-04-28 07:59:05 [INFO] Epoch 135/1300 | train_loss=0.0198 | val_loss=0.0175 | COn_f1=0.8100 | COnP_f1=0.7923 | COnPOff_f1=0.5080 | sig_onset=0.0034 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 07:59:33 [INFO] Epoch 136 [83/250] loss=0.0203 onset=0.0083 frame=0.0080 offset=0.0040
+2026-04-28 08:00:00 [INFO] Epoch 136 [166/250] loss=0.0197 onset=0.0086 frame=0.0072 offset=0.0039
+2026-04-28 08:00:26 [INFO] Epoch 136 [249/250] loss=0.0195 onset=0.0084 frame=0.0070 offset=0.0042
+2026-04-28 08:00:37 [INFO] Epoch 136/1300 | train_loss=0.0199 | val_loss=0.0173 | COn_f1=0.8084 | COnP_f1=0.7918 | COnPOff_f1=0.4667 | sig_onset=0.0034 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 08:01:04 [INFO] Epoch 137 [83/250] loss=0.0196 onset=0.0081 frame=0.0072 offset=0.0042
+2026-04-28 08:01:31 [INFO] Epoch 137 [166/250] loss=0.0191 onset=0.0080 frame=0.0071 offset=0.0040
+2026-04-28 08:01:58 [INFO] Epoch 137 [249/250] loss=0.0217 onset=0.0091 frame=0.0078 offset=0.0047
+2026-04-28 08:02:09 [INFO] Epoch 137/1300 | train_loss=0.0197 | val_loss=0.0176 | COn_f1=0.8058 | COnP_f1=0.7877 | COnPOff_f1=0.4395 | sig_onset=0.0033 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 08:02:36 [INFO] Epoch 138 [83/250] loss=0.0231 onset=0.0103 frame=0.0079 offset=0.0048
+2026-04-28 08:03:03 [INFO] Epoch 138 [166/250] loss=0.0186 onset=0.0079 frame=0.0068 offset=0.0039
+2026-04-28 08:03:30 [INFO] Epoch 138 [249/250] loss=0.0216 onset=0.0090 frame=0.0080 offset=0.0046
+2026-04-28 08:03:40 [INFO] Epoch 138/1300 | train_loss=0.0199 | val_loss=0.0173 | COn_f1=0.8127 | COnP_f1=0.7946 | COnPOff_f1=0.4787 | sig_onset=0.0032 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 08:04:08 [INFO] Epoch 139 [83/250] loss=0.0189 onset=0.0079 frame=0.0071 offset=0.0039
+2026-04-28 08:04:35 [INFO] Epoch 139 [166/250] loss=0.0178 onset=0.0080 frame=0.0060 offset=0.0039
+2026-04-28 08:05:01 [INFO] Epoch 139 [249/250] loss=0.0192 onset=0.0083 frame=0.0071 offset=0.0039
+2026-04-28 08:05:12 [INFO] Epoch 139/1300 | train_loss=0.0198 | val_loss=0.0173 | COn_f1=0.8091 | COnP_f1=0.7918 | COnPOff_f1=0.4743 | sig_onset=0.0033 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 08:05:39 [INFO] Epoch 140 [83/250] loss=0.0212 onset=0.0087 frame=0.0084 offset=0.0041
+2026-04-28 08:06:06 [INFO] Epoch 140 [166/250] loss=0.0186 onset=0.0073 frame=0.0070 offset=0.0043
+2026-04-28 08:06:33 [INFO] Epoch 140 [249/250] loss=0.0251 onset=0.0100 frame=0.0101 offset=0.0049
+2026-04-28 08:08:46 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7819
+2026-04-28 08:08:56 [INFO] Epoch 140/1300 | train_loss=0.0196 | val_loss=0.0174 | COn_f1=0.8040 | COnP_f1=0.7861 | COnPOff_f1=0.4715 | sig_onset=0.0031 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.92e-04
+2026-04-28 08:09:24 [INFO] Epoch 141 [83/250] loss=0.0197 onset=0.0080 frame=0.0078 offset=0.0040
+2026-04-28 08:09:51 [INFO] Epoch 141 [166/250] loss=0.0207 onset=0.0089 frame=0.0075 offset=0.0043
+2026-04-28 08:10:18 [INFO] Epoch 141 [249/250] loss=0.0188 onset=0.0081 frame=0.0066 offset=0.0041
+2026-04-28 08:10:28 [INFO] Epoch 141/1300 | train_loss=0.0196 | val_loss=0.0174 | COn_f1=0.8138 | COnP_f1=0.7969 | COnPOff_f1=0.5148 | sig_onset=0.0034 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:10:28 [INFO]   -> Best model saved! COnP_f1=0.7969
+2026-04-28 08:10:54 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7961 | COnP_f1=0.7666 | COnPOff_f1=0.4543
+2026-04-28 08:11:21 [INFO] Epoch 142 [83/250] loss=0.0195 onset=0.0084 frame=0.0072 offset=0.0039
+2026-04-28 08:11:48 [INFO] Epoch 142 [166/250] loss=0.0173 onset=0.0071 frame=0.0065 offset=0.0037
+2026-04-28 08:12:15 [INFO] Epoch 142 [249/250] loss=0.0173 onset=0.0073 frame=0.0063 offset=0.0037
+2026-04-28 08:12:25 [INFO] Epoch 142/1300 | train_loss=0.0196 | val_loss=0.0173 | COn_f1=0.8060 | COnP_f1=0.7896 | COnPOff_f1=0.4635 | sig_onset=0.0033 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:12:53 [INFO] Epoch 143 [83/250] loss=0.0222 onset=0.0093 frame=0.0082 offset=0.0047
+2026-04-28 08:13:19 [INFO] Epoch 143 [166/250] loss=0.0158 onset=0.0065 frame=0.0058 offset=0.0036
+2026-04-28 08:13:46 [INFO] Epoch 143 [249/250] loss=0.0232 onset=0.0096 frame=0.0089 offset=0.0046
+2026-04-28 08:13:57 [INFO] Epoch 143/1300 | train_loss=0.0194 | val_loss=0.0171 | COn_f1=0.8078 | COnP_f1=0.7900 | COnPOff_f1=0.4617 | sig_onset=0.0030 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:14:24 [INFO] Epoch 144 [83/250] loss=0.0244 onset=0.0105 frame=0.0090 offset=0.0049
+2026-04-28 08:14:51 [INFO] Epoch 144 [166/250] loss=0.0166 onset=0.0071 frame=0.0060 offset=0.0035
+2026-04-28 08:15:18 [INFO] Epoch 144 [249/250] loss=0.0221 onset=0.0095 frame=0.0081 offset=0.0044
+2026-04-28 08:15:29 [INFO] Epoch 144/1300 | train_loss=0.0195 | val_loss=0.0172 | COn_f1=0.8118 | COnP_f1=0.7950 | COnPOff_f1=0.5065 | sig_onset=0.0034 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:15:56 [INFO] Epoch 145 [83/250] loss=0.0156 onset=0.0071 frame=0.0052 offset=0.0033
+2026-04-28 08:16:23 [INFO] Epoch 145 [166/250] loss=0.0220 onset=0.0092 frame=0.0082 offset=0.0046
+2026-04-28 08:16:50 [INFO] Epoch 145 [249/250] loss=0.0209 onset=0.0090 frame=0.0076 offset=0.0043
+2026-04-28 08:19:02 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7891
+2026-04-28 08:19:13 [INFO] Epoch 145/1300 | train_loss=0.0196 | val_loss=0.0176 | COn_f1=0.8103 | COnP_f1=0.7936 | COnPOff_f1=0.4505 | sig_onset=0.0033 sig_frame=0.0135 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:19:40 [INFO] Epoch 146 [83/250] loss=0.0162 onset=0.0066 frame=0.0061 offset=0.0035
+2026-04-28 08:20:07 [INFO] Epoch 146 [166/250] loss=0.0196 onset=0.0085 frame=0.0069 offset=0.0042
+2026-04-28 08:20:34 [INFO] Epoch 146 [249/250] loss=0.0202 onset=0.0086 frame=0.0072 offset=0.0044
+2026-04-28 08:20:44 [INFO] Epoch 146/1300 | train_loss=0.0195 | val_loss=0.0172 | COn_f1=0.8128 | COnP_f1=0.7961 | COnPOff_f1=0.5064 | sig_onset=0.0033 sig_frame=0.0128 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:21:12 [INFO] Epoch 147 [83/250] loss=0.0210 onset=0.0092 frame=0.0077 offset=0.0041
+2026-04-28 08:21:38 [INFO] Epoch 147 [166/250] loss=0.0184 onset=0.0079 frame=0.0066 offset=0.0040
+2026-04-28 08:22:05 [INFO] Epoch 147 [249/250] loss=0.0177 onset=0.0076 frame=0.0061 offset=0.0040
+2026-04-28 08:22:16 [INFO] Epoch 147/1300 | train_loss=0.0195 | val_loss=0.0172 | COn_f1=0.8113 | COnP_f1=0.7951 | COnPOff_f1=0.4929 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:22:43 [INFO] Epoch 148 [83/250] loss=0.0223 onset=0.0100 frame=0.0073 offset=0.0049
+2026-04-28 08:23:10 [INFO] Epoch 148 [166/250] loss=0.0203 onset=0.0088 frame=0.0072 offset=0.0044
+2026-04-28 08:23:37 [INFO] Epoch 148 [249/250] loss=0.0193 onset=0.0080 frame=0.0071 offset=0.0042
+2026-04-28 08:23:48 [INFO] Epoch 148/1300 | train_loss=0.0195 | val_loss=0.0171 | COn_f1=0.8103 | COnP_f1=0.7948 | COnPOff_f1=0.4636 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.91e-04
+2026-04-28 08:24:15 [INFO] Epoch 149 [83/250] loss=0.0220 onset=0.0093 frame=0.0079 offset=0.0048
+2026-04-28 08:24:42 [INFO] Epoch 149 [166/250] loss=0.0218 onset=0.0092 frame=0.0081 offset=0.0045
+2026-04-28 08:25:09 [INFO] Epoch 149 [249/250] loss=0.0200 onset=0.0084 frame=0.0077 offset=0.0039
+2026-04-28 08:25:19 [INFO] Epoch 149/1300 | train_loss=0.0194 | val_loss=0.0170 | COn_f1=0.8117 | COnP_f1=0.7952 | COnPOff_f1=0.4617 | sig_onset=0.0033 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:25:46 [INFO] Epoch 150 [83/250] loss=0.0202 onset=0.0089 frame=0.0070 offset=0.0043
+2026-04-28 08:26:13 [INFO] Epoch 150 [166/250] loss=0.0213 onset=0.0090 frame=0.0083 offset=0.0041
+2026-04-28 08:26:40 [INFO] Epoch 150 [249/250] loss=0.0196 onset=0.0086 frame=0.0069 offset=0.0041
+2026-04-28 08:28:54 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7892
+2026-04-28 08:29:04 [INFO] Epoch 150/1300 | train_loss=0.0192 | val_loss=0.0170 | COn_f1=0.8096 | COnP_f1=0.7941 | COnPOff_f1=0.4616 | sig_onset=0.0033 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:29:32 [INFO] Epoch 151 [83/250] loss=0.0197 onset=0.0080 frame=0.0073 offset=0.0044
+2026-04-28 08:29:58 [INFO] Epoch 151 [166/250] loss=0.0171 onset=0.0075 frame=0.0060 offset=0.0037
+2026-04-28 08:30:25 [INFO] Epoch 151 [249/250] loss=0.0169 onset=0.0069 frame=0.0061 offset=0.0039
+2026-04-28 08:30:36 [INFO] Epoch 151/1300 | train_loss=0.0196 | val_loss=0.0170 | COn_f1=0.8057 | COnP_f1=0.7920 | COnPOff_f1=0.4403 | sig_onset=0.0033 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:31:03 [INFO] Epoch 152 [83/250] loss=0.0196 onset=0.0082 frame=0.0073 offset=0.0041
+2026-04-28 08:31:30 [INFO] Epoch 152 [166/250] loss=0.0180 onset=0.0073 frame=0.0067 offset=0.0040
+2026-04-28 08:31:57 [INFO] Epoch 152 [249/250] loss=0.0186 onset=0.0077 frame=0.0072 offset=0.0037
+2026-04-28 08:32:07 [INFO] Epoch 152/1300 | train_loss=0.0194 | val_loss=0.0168 | COn_f1=0.8131 | COnP_f1=0.7972 | COnPOff_f1=0.4941 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:32:08 [INFO]   -> Best model saved! COnP_f1=0.7972
+2026-04-28 08:32:33 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7958 | COnP_f1=0.7666 | COnPOff_f1=0.4399
+2026-04-28 08:33:00 [INFO] Epoch 153 [83/250] loss=0.0219 onset=0.0094 frame=0.0080 offset=0.0045
+2026-04-28 08:33:27 [INFO] Epoch 153 [166/250] loss=0.0193 onset=0.0077 frame=0.0076 offset=0.0041
+2026-04-28 08:33:54 [INFO] Epoch 153 [249/250] loss=0.0179 onset=0.0083 frame=0.0057 offset=0.0039
+2026-04-28 08:34:05 [INFO] Epoch 153/1300 | train_loss=0.0194 | val_loss=0.0169 | COn_f1=0.8114 | COnP_f1=0.7971 | COnPOff_f1=0.4705 | sig_onset=0.0031 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:34:32 [INFO] Epoch 154 [83/250] loss=0.0183 onset=0.0077 frame=0.0067 offset=0.0038
+2026-04-28 08:34:59 [INFO] Epoch 154 [166/250] loss=0.0175 onset=0.0075 frame=0.0058 offset=0.0042
+2026-04-28 08:35:26 [INFO] Epoch 154 [249/250] loss=0.0205 onset=0.0087 frame=0.0076 offset=0.0042
+2026-04-28 08:35:36 [INFO] Epoch 154/1300 | train_loss=0.0193 | val_loss=0.0169 | COn_f1=0.8111 | COnP_f1=0.7965 | COnPOff_f1=0.4788 | sig_onset=0.0034 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:36:04 [INFO] Epoch 155 [83/250] loss=0.0165 onset=0.0070 frame=0.0061 offset=0.0034
+2026-04-28 08:36:31 [INFO] Epoch 155 [166/250] loss=0.0200 onset=0.0091 frame=0.0066 offset=0.0043
+2026-04-28 08:36:57 [INFO] Epoch 155 [249/250] loss=0.0177 onset=0.0072 frame=0.0069 offset=0.0036
+2026-04-28 08:39:10 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7937
+2026-04-28 08:39:21 [INFO] Epoch 155/1300 | train_loss=0.0194 | val_loss=0.0169 | COn_f1=0.8125 | COnP_f1=0.7959 | COnPOff_f1=0.4608 | sig_onset=0.0031 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:39:48 [INFO] Epoch 156 [83/250] loss=0.0235 onset=0.0107 frame=0.0078 offset=0.0050
+2026-04-28 08:40:15 [INFO] Epoch 156 [166/250] loss=0.0165 onset=0.0069 frame=0.0060 offset=0.0036
+2026-04-28 08:40:42 [INFO] Epoch 156 [249/250] loss=0.0202 onset=0.0091 frame=0.0069 offset=0.0043
+2026-04-28 08:40:52 [INFO] Epoch 156/1300 | train_loss=0.0192 | val_loss=0.0168 | COn_f1=0.8113 | COnP_f1=0.7964 | COnPOff_f1=0.4856 | sig_onset=0.0034 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.90e-04
+2026-04-28 08:41:19 [INFO] Epoch 157 [83/250] loss=0.0196 onset=0.0084 frame=0.0072 offset=0.0040
+2026-04-28 08:41:46 [INFO] Epoch 157 [166/250] loss=0.0193 onset=0.0084 frame=0.0067 offset=0.0043
+2026-04-28 08:42:13 [INFO] Epoch 157 [249/250] loss=0.0207 onset=0.0089 frame=0.0076 offset=0.0042
+2026-04-28 08:42:24 [INFO] Epoch 157/1300 | train_loss=0.0193 | val_loss=0.0170 | COn_f1=0.8098 | COnP_f1=0.7933 | COnPOff_f1=0.4948 | sig_onset=0.0033 sig_frame=0.0127 | thresh(on=0.50,fr=0.40) | lr=2.89e-04
+2026-04-28 08:42:51 [INFO] Epoch 158 [83/250] loss=0.0156 onset=0.0068 frame=0.0052 offset=0.0036
+2026-04-28 08:43:18 [INFO] Epoch 158 [166/250] loss=0.0155 onset=0.0063 frame=0.0057 offset=0.0035
+2026-04-28 08:43:45 [INFO] Epoch 158 [249/250] loss=0.0140 onset=0.0062 frame=0.0049 offset=0.0029
+2026-04-28 08:43:56 [INFO] Epoch 158/1300 | train_loss=0.0191 | val_loss=0.0167 | COn_f1=0.8149 | COnP_f1=0.7994 | COnPOff_f1=0.4947 | sig_onset=0.0031 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.89e-04
+2026-04-28 08:43:56 [INFO]   -> Best model saved! COnP_f1=0.7994
+2026-04-28 08:44:21 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7958 | COnP_f1=0.7669 | COnPOff_f1=0.4371
+2026-04-28 08:44:48 [INFO] Epoch 159 [83/250] loss=0.0158 onset=0.0066 frame=0.0057 offset=0.0035
+2026-04-28 08:45:15 [INFO] Epoch 159 [166/250] loss=0.0177 onset=0.0064 frame=0.0078 offset=0.0035
+2026-04-28 08:45:42 [INFO] Epoch 159 [249/250] loss=0.0192 onset=0.0081 frame=0.0069 offset=0.0042
+2026-04-28 08:45:53 [INFO] Epoch 159/1300 | train_loss=0.0190 | val_loss=0.0168 | COn_f1=0.8086 | COnP_f1=0.7938 | COnPOff_f1=0.4621 | sig_onset=0.0032 sig_frame=0.0131 | thresh(on=0.50,fr=0.40) | lr=2.89e-04
+2026-04-28 08:46:20 [INFO] Epoch 160 [83/250] loss=0.0203 onset=0.0089 frame=0.0070 offset=0.0044
+2026-04-28 08:46:47 [INFO] Epoch 160 [166/250] loss=0.0193 onset=0.0085 frame=0.0069 offset=0.0039
+2026-04-28 08:47:14 [INFO] Epoch 160 [249/250] loss=0.0158 onset=0.0065 frame=0.0059 offset=0.0034
+2026-04-28 08:49:24 [INFO]   Threshold search: best on=0.40, fr=0.40, COnP_f1=0.7916
+2026-04-28 08:49:34 [INFO] Epoch 160/1300 | train_loss=0.0190 | val_loss=0.0169 | COn_f1=0.8116 | COnP_f1=0.7943 | COnPOff_f1=0.5009 | sig_onset=0.0029 sig_frame=0.0127 | thresh(on=0.40,fr=0.40) | lr=2.89e-04
+2026-04-28 08:49:59 [INFO]   [TEST MONITOR FULL TEST:periodic_40] COn_f1=0.7937 | COnP_f1=0.7647 | COnPOff_f1=0.4447
+2026-04-28 08:50:26 [INFO] Epoch 161 [83/250] loss=0.0189 onset=0.0075 frame=0.0074 offset=0.0040
+2026-04-28 08:50:53 [INFO] Epoch 161 [166/250] loss=0.0218 onset=0.0090 frame=0.0082 offset=0.0046
+2026-04-28 08:51:20 [INFO] Epoch 161 [249/250] loss=0.0207 onset=0.0083 frame=0.0078 offset=0.0046
+2026-04-28 08:51:31 [INFO] Epoch 161/1300 | train_loss=0.0190 | val_loss=0.0168 | COn_f1=0.8098 | COnP_f1=0.7950 | COnPOff_f1=0.4947 | sig_onset=0.0031 sig_frame=0.0127 | thresh(on=0.40,fr=0.40) | lr=2.89e-04
+2026-04-28 08:51:58 [INFO] Epoch 162 [83/250] loss=0.0184 onset=0.0078 frame=0.0066 offset=0.0040
+2026-04-28 08:52:25 [INFO] Epoch 162 [166/250] loss=0.0188 onset=0.0080 frame=0.0069 offset=0.0038
+2026-04-28 08:52:52 [INFO] Epoch 162 [249/250] loss=0.0174 onset=0.0073 frame=0.0063 offset=0.0039
+2026-04-28 08:53:03 [INFO] Epoch 162/1300 | train_loss=0.0190 | val_loss=0.0168 | COn_f1=0.8118 | COnP_f1=0.7964 | COnPOff_f1=0.4899 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.40,fr=0.40) | lr=2.89e-04
+2026-04-28 08:53:30 [INFO] Epoch 163 [83/250] loss=0.0200 onset=0.0080 frame=0.0080 offset=0.0041
+2026-04-28 08:53:57 [INFO] Epoch 163 [166/250] loss=0.0150 onset=0.0063 frame=0.0053 offset=0.0033
+2026-04-28 08:54:24 [INFO] Epoch 163 [249/250] loss=0.0210 onset=0.0095 frame=0.0068 offset=0.0048
+2026-04-28 08:54:34 [INFO] Epoch 163/1300 | train_loss=0.0191 | val_loss=0.0166 | COn_f1=0.8111 | COnP_f1=0.7973 | COnPOff_f1=0.4570 | sig_onset=0.0031 sig_frame=0.0133 | thresh(on=0.40,fr=0.40) | lr=2.89e-04
+2026-04-28 08:55:01 [INFO] Epoch 164 [83/250] loss=0.0203 onset=0.0087 frame=0.0076 offset=0.0040
+2026-04-28 08:55:28 [INFO] Epoch 164 [166/250] loss=0.0182 onset=0.0073 frame=0.0069 offset=0.0040
+2026-04-28 08:55:55 [INFO] Epoch 164 [249/250] loss=0.0167 onset=0.0074 frame=0.0055 offset=0.0039
+2026-04-28 08:56:06 [INFO] Epoch 164/1300 | train_loss=0.0189 | val_loss=0.0166 | COn_f1=0.8123 | COnP_f1=0.7979 | COnPOff_f1=0.4900 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.40,fr=0.40) | lr=2.88e-04
+2026-04-28 08:56:33 [INFO] Epoch 165 [83/250] loss=0.0146 onset=0.0065 frame=0.0047 offset=0.0034
+2026-04-28 08:57:00 [INFO] Epoch 165 [166/250] loss=0.0182 onset=0.0078 frame=0.0065 offset=0.0039
+2026-04-28 08:57:27 [INFO] Epoch 165 [249/250] loss=0.0207 onset=0.0094 frame=0.0069 offset=0.0044
+2026-04-28 08:59:40 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.7978
+2026-04-28 08:59:51 [INFO] Epoch 165/1300 | train_loss=0.0189 | val_loss=0.0166 | COn_f1=0.8161 | COnP_f1=0.8011 | COnPOff_f1=0.4542 | sig_onset=0.0032 sig_frame=0.0133 | thresh(on=0.50,fr=0.40) | lr=2.88e-04
+2026-04-28 08:59:51 [INFO]   -> Best model saved! COnP_f1=0.8011
+2026-04-28 09:00:16 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7958 | COnP_f1=0.7662 | COnPOff_f1=0.3989
+2026-04-28 09:00:43 [INFO] Epoch 166 [83/250] loss=0.0150 onset=0.0064 frame=0.0053 offset=0.0032
+2026-04-28 09:01:10 [INFO] Epoch 166 [166/250] loss=0.0182 onset=0.0075 frame=0.0067 offset=0.0040
+2026-04-28 09:01:37 [INFO] Epoch 166 [249/250] loss=0.0196 onset=0.0084 frame=0.0070 offset=0.0043
+2026-04-28 09:01:48 [INFO] Epoch 166/1300 | train_loss=0.0189 | val_loss=0.0167 | COn_f1=0.8109 | COnP_f1=0.7963 | COnPOff_f1=0.4787 | sig_onset=0.0032 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.88e-04
+2026-04-28 09:02:15 [INFO] Epoch 167 [83/250] loss=0.0196 onset=0.0085 frame=0.0069 offset=0.0042
+2026-04-28 09:02:42 [INFO] Epoch 167 [166/250] loss=0.0204 onset=0.0089 frame=0.0074 offset=0.0041
+2026-04-28 09:03:09 [INFO] Epoch 167 [249/250] loss=0.0222 onset=0.0099 frame=0.0074 offset=0.0048
+2026-04-28 09:03:20 [INFO] Epoch 167/1300 | train_loss=0.0188 | val_loss=0.0163 | COn_f1=0.8158 | COnP_f1=0.8020 | COnPOff_f1=0.4833 | sig_onset=0.0030 sig_frame=0.0129 | thresh(on=0.50,fr=0.40) | lr=2.88e-04
+2026-04-28 09:03:20 [INFO]   -> Best model saved! COnP_f1=0.8020
+2026-04-28 09:03:45 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7967 | COnP_f1=0.7676 | COnPOff_f1=0.4217
+2026-04-28 09:04:12 [INFO] Epoch 168 [83/250] loss=0.0176 onset=0.0079 frame=0.0059 offset=0.0038
+2026-04-28 09:04:39 [INFO] Epoch 168 [166/250] loss=0.0241 onset=0.0105 frame=0.0084 offset=0.0052
+2026-04-28 09:05:06 [INFO] Epoch 168 [249/250] loss=0.0183 onset=0.0078 frame=0.0064 offset=0.0041
+2026-04-28 09:05:17 [INFO] Epoch 168/1300 | train_loss=0.0190 | val_loss=0.0164 | COn_f1=0.8128 | COnP_f1=0.7993 | COnPOff_f1=0.4764 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.88e-04
+2026-04-28 09:05:44 [INFO] Epoch 169 [83/250] loss=0.0169 onset=0.0073 frame=0.0059 offset=0.0037
+2026-04-28 09:06:11 [INFO] Epoch 169 [166/250] loss=0.0169 onset=0.0075 frame=0.0056 offset=0.0037
+2026-04-28 09:06:38 [INFO] Epoch 169 [249/250] loss=0.0194 onset=0.0084 frame=0.0067 offset=0.0043
+2026-04-28 09:06:48 [INFO] Epoch 169/1300 | train_loss=0.0188 | val_loss=0.0165 | COn_f1=0.8146 | COnP_f1=0.8006 | COnPOff_f1=0.4882 | sig_onset=0.0032 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.88e-04
+2026-04-28 09:07:15 [INFO] Epoch 170 [83/250] loss=0.0216 onset=0.0091 frame=0.0079 offset=0.0047
+2026-04-28 09:07:42 [INFO] Epoch 170 [166/250] loss=0.0170 onset=0.0073 frame=0.0062 offset=0.0035
+2026-04-28 09:08:09 [INFO] Epoch 170 [249/250] loss=0.0259 onset=0.0124 frame=0.0078 offset=0.0057
+2026-04-28 09:10:22 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.8028
+2026-04-28 09:10:32 [INFO] Epoch 170/1300 | train_loss=0.0188 | val_loss=0.0164 | COn_f1=0.8195 | COnP_f1=0.8052 | COnPOff_f1=0.5004 | sig_onset=0.0033 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.88e-04
+2026-04-28 09:10:33 [INFO]   -> Best model saved! COnP_f1=0.8052
+2026-04-28 09:10:58 [INFO]   [TEST MONITOR FULL TEST:best_after20] COn_f1=0.7988 | COnP_f1=0.7693 | COnPOff_f1=0.4424
+2026-04-28 09:11:25 [INFO] Epoch 171 [83/250] loss=0.0181 onset=0.0076 frame=0.0066 offset=0.0040
+2026-04-28 09:11:52 [INFO] Epoch 171 [166/250] loss=0.0162 onset=0.0067 frame=0.0056 offset=0.0039
+2026-04-28 09:12:19 [INFO] Epoch 171 [249/250] loss=0.0255 onset=0.0110 frame=0.0092 offset=0.0053
+2026-04-28 09:12:29 [INFO] Epoch 171/1300 | train_loss=0.0189 | val_loss=0.0164 | COn_f1=0.8163 | COnP_f1=0.8013 | COnPOff_f1=0.4809 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.87e-04
+2026-04-28 09:12:57 [INFO] Epoch 172 [83/250] loss=0.0202 onset=0.0086 frame=0.0072 offset=0.0043
+2026-04-28 09:13:24 [INFO] Epoch 172 [166/250] loss=0.0193 onset=0.0084 frame=0.0068 offset=0.0042
+2026-04-28 09:13:50 [INFO] Epoch 172 [249/250] loss=0.0182 onset=0.0072 frame=0.0070 offset=0.0040
+2026-04-28 09:14:01 [INFO] Epoch 172/1300 | train_loss=0.0187 | val_loss=0.0165 | COn_f1=0.8116 | COnP_f1=0.7980 | COnPOff_f1=0.4941 | sig_onset=0.0031 sig_frame=0.0126 | thresh(on=0.50,fr=0.40) | lr=2.87e-04
+2026-04-28 09:14:28 [INFO] Epoch 173 [83/250] loss=0.0201 onset=0.0088 frame=0.0070 offset=0.0043
+2026-04-28 09:14:55 [INFO] Epoch 173 [166/250] loss=0.0170 onset=0.0072 frame=0.0065 offset=0.0034
+2026-04-28 09:15:22 [INFO] Epoch 173 [249/250] loss=0.0196 onset=0.0086 frame=0.0070 offset=0.0040
+2026-04-28 09:15:33 [INFO] Epoch 173/1300 | train_loss=0.0187 | val_loss=0.0165 | COn_f1=0.8135 | COnP_f1=0.8002 | COnPOff_f1=0.4745 | sig_onset=0.0030 sig_frame=0.0127 | thresh(on=0.50,fr=0.40) | lr=2.87e-04
+2026-04-28 09:16:00 [INFO] Epoch 174 [83/250] loss=0.0170 onset=0.0073 frame=0.0064 offset=0.0034
+2026-04-28 09:16:27 [INFO] Epoch 174 [166/250] loss=0.0230 onset=0.0106 frame=0.0079 offset=0.0045
+2026-04-28 09:16:54 [INFO] Epoch 174 [249/250] loss=0.0202 onset=0.0084 frame=0.0077 offset=0.0040
+2026-04-28 09:17:05 [INFO] Epoch 174/1300 | train_loss=0.0185 | val_loss=0.0163 | COn_f1=0.8150 | COnP_f1=0.8022 | COnPOff_f1=0.4779 | sig_onset=0.0031 sig_frame=0.0130 | thresh(on=0.50,fr=0.40) | lr=2.87e-04
+2026-04-28 09:17:32 [INFO] Epoch 175 [83/250] loss=0.0179 onset=0.0075 frame=0.0068 offset=0.0036
+2026-04-28 09:17:59 [INFO] Epoch 175 [166/250] loss=0.0197 onset=0.0085 frame=0.0070 offset=0.0043
+2026-04-28 09:18:26 [INFO] Epoch 175 [249/250] loss=0.0164 onset=0.0069 frame=0.0059 offset=0.0036
+2026-04-28 09:20:40 [INFO]   Threshold search: best on=0.50, fr=0.40, COnP_f1=0.8000
+2026-04-28 09:20:50 [INFO] Epoch 175/1300 | train_loss=0.0187 | val_loss=0.0163 | COn_f1=0.8158 | COnP_f1=0.8031 | COnPOff_f1=0.4550 | sig_onset=0.0032 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.87e-04
+2026-04-28 09:21:17 [INFO] Epoch 176 [83/250] loss=0.0222 onset=0.0096 frame=0.0076 offset=0.0049
+2026-04-28 09:21:44 [INFO] Epoch 176 [166/250] loss=0.0191 onset=0.0077 frame=0.0071 offset=0.0043
+2026-04-28 09:22:11 [INFO] Epoch 176 [249/250] loss=0.0183 onset=0.0076 frame=0.0067 offset=0.0040
+2026-04-28 09:22:22 [INFO] Epoch 176/1300 | train_loss=0.0188 | val_loss=0.0164 | COn_f1=0.8160 | COnP_f1=0.8033 | COnPOff_f1=0.4709 | sig_onset=0.0033 sig_frame=0.0132 | thresh(on=0.50,fr=0.40) | lr=2.87e-04
+2026-04-28 09:22:49 [INFO] Epoch 177 [83/250] loss=0.0196 onset=0.0081 frame=0.0073 offset=0.0041
+2026-04-28 09:23:16 [INFO] Epoch 177 [166/250] loss=0.0125 onset=0.0056 frame=0.0038 offset=0.0030
