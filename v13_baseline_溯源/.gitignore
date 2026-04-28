@@ -1,0 +1,22 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local/editor state
+.claude/
+.DS_Store
+
+# Model/checkpoint artifacts
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.bin
+
+# Large feature/cache arrays
+*.npy
+*.npz
+
+# Papers or local reference documents
+*.pdf

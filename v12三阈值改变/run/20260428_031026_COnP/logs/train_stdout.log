@@ -1,0 +1,16 @@
+2026-04-28 03:10:26 [INFO] Run directory: run/20260428_031026_COnP
+2026-04-28 03:10:26 [INFO] Device: cuda
+2026-04-28 03:10:26 [INFO] Config: {'data': {'audio_dir': '/mnt/ssd/lian/论文复现/CFH-Transformer/vocal_mp3/', 'label_path': '/mnt/ssd/lian/论文复现/CFH-Transformer/MIR-ST500_corrected.json', 'splits_dir': '/mnt/ssd/lian/给claudecode/v6_0415/splits_v11/', 'cqt_cache_dir': '/mnt/ssd/lian/论文复现/CFH-Transformer/cqt_cache_50ms/npy/', 'sample_rate': 16000, 'segment_frames': 256, 'max_samples_per_epoch': 4000}, 'audio': {'hop_length': 800, 'cqt_bins': 288, 'bins_per_octave': 48, 'n_octaves': 6, 'fmin': 48.9994}, 'model': {'h_dim': 128, 'conv_channels': 32, 'num_cycles': 2, 'num_transformer_layers': 1, 'nhead_fh': 8, 'nhead_ht': 8, 'nhead_tf': 6, 'dim_feedforward': 512, 'dropout': 0.1, 'num_pitches': 48, 'midi_min': 36, 'cqt_mean': -65.0, 'cqt_std': 18.0}, 'training': {'batch_size': 16, 'num_workers': 4, 'learning_rate': 0.0003, 'epochs': 1300, 'run_dir': './run', 'save_every': 50, 'grad_clip': 1.0, 'warmup_epochs': 0}, 'loss': {'onset_weight': 1.0, 'offset_weight': 1.0, 'frame_weight': 1.0, 'onset_pos_weight': 5.0}}
+2026-04-28 03:10:26 [INFO] ============================================================
+2026-04-28 03:10:26 [INFO] CFT v6_0415 — train_conp.py (best model: COnP F1)
+2026-04-28 03:10:26 [INFO] ============================================================
+2026-04-28 03:10:27 [INFO] Loaded GT annotations from /mnt/ssd/lian/论文复现/CFH-Transformer/MIR-ST500_corrected.json
+2026-04-28 03:10:29 [INFO] Train samples: 13545, Val songs: 40, Test songs: 100, Test monitor songs: 100
+2026-04-28 03:10:29 [INFO] Model parameters: 3,460,176
+2026-04-28 03:10:29 [INFO] Tokenization: continuous kernels [3,5,7] (paper-aligned, no dilation)
+2026-04-28 03:10:29 [INFO] Mixed precision (AMP) enabled
+2026-04-28 03:10:30 [INFO] Scheduler: CosineAnnealingLR (no warmup, T_max=1300)
+2026-04-28 03:10:30 [INFO] Max batches per epoch: 250
+2026-04-28 03:10:58 [INFO] Epoch 1 [83/250] loss=0.1278 onset=0.0473 frame=0.0665 offset=0.0140
+2026-04-28 03:11:25 [INFO] Epoch 1 [166/250] loss=0.1106 onset=0.0410 frame=0.0580 offset=0.0117
+2026-04-28 03:11:52 [INFO] Epoch 1 [249/250] loss=0.0907 onset=0.0342 frame=0.0461 offset=0.0104

@@ -1,0 +1,167 @@
+device cuda
+checkpoint path=run/20260428_031026_COnP/checkpoints/best_model_epoch0128_COnP0.7952.pt epoch=128 best_conp=0.7951849652807437 best_onset=0.5 best_frame=0.4
+infer val [  1/40] song 361
+infer val [  2/40] song 362
+infer val [  3/40] song 363
+infer val [  4/40] song 364
+infer val [  5/40] song 365
+infer val [  6/40] song 366
+infer val [  7/40] song 367
+infer val [  8/40] song 368
+infer val [  9/40] song 369
+infer val [ 10/40] song 370
+infer val [ 11/40] song 371
+infer val [ 12/40] song 372
+infer val [ 13/40] song 373
+infer val [ 14/40] song 374
+infer val [ 15/40] song 375
+infer val [ 16/40] song 376
+infer val [ 17/40] song 377
+infer val [ 18/40] song 378
+infer val [ 19/40] song 379
+infer val [ 20/40] song 380
+infer val [ 21/40] song 381
+infer val [ 22/40] song 382
+infer val [ 23/40] song 383
+infer val [ 24/40] song 384
+infer val [ 25/40] song 385
+infer val [ 26/40] song 386
+infer val [ 27/40] song 387
+infer val [ 28/40] song 388
+infer val [ 29/40] song 389
+infer val [ 30/40] song 390
+infer val [ 31/40] song 391
+infer val [ 32/40] song 392
+infer val [ 33/40] song 393
+infer val [ 34/40] song 394
+infer val [ 35/40] song 395
+infer val [ 36/40] song 396
+infer val [ 37/40] song 397
+infer val [ 38/40] song 398
+infer val [ 39/40] song 399
+infer val [ 40/40] song 400
+infer val done in 16.4s
+offset grid 20 values: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
+VAL off=0.05 COn=0.815229315 COnP=0.800641340 COnPOff=0.616109436
+VAL off=0.10 COn=0.816536528 COnP=0.801878018 COnPOff=0.619397077
+VAL off=0.15 COn=0.817418233 COnP=0.802468719 COnPOff=0.619877147
+VAL off=0.20 COn=0.817784312 COnP=0.802687458 COnPOff=0.617087414
+VAL off=0.25 COn=0.817845963 COnP=0.802707722 COnPOff=0.613839041
+VAL off=0.30 COn=0.817858159 COnP=0.802636956 COnPOff=0.605681945
+VAL off=0.35 COn=0.817932325 COnP=0.802588525 COnPOff=0.596052306
+VAL off=0.40 COn=0.818025297 COnP=0.802527605 COnPOff=0.583917256
+VAL off=0.45 COn=0.818022195 COnP=0.802428375 COnPOff=0.572920763
+VAL off=0.50 COn=0.817991154 COnP=0.802434999 COnPOff=0.562590724
+VAL off=0.55 COn=0.818050570 COnP=0.802492502 COnPOff=0.550956633
+VAL off=0.60 COn=0.818043040 COnP=0.802484176 COnPOff=0.541506824
+VAL off=0.65 COn=0.817976619 COnP=0.802417023 COnPOff=0.531015592
+VAL off=0.70 COn=0.817976619 COnP=0.802417023 COnPOff=0.522247635
+VAL off=0.75 COn=0.818014634 COnP=0.802454878 COnPOff=0.513992575
+VAL off=0.80 COn=0.818046055 COnP=0.802485177 COnPOff=0.508521277
+VAL off=0.85 COn=0.818046055 COnP=0.802485177 COnPOff=0.504337606
+VAL off=0.90 COn=0.818046055 COnP=0.802485177 COnPOff=0.502341747
+VAL off=0.95 COn=0.818046055 COnP=0.802485177 COnPOff=0.501359093
+VAL off=1.00 COn=0.818046055 COnP=0.802485177 COnPOff=0.501359093
+SELECTED_BY_VAL off=0.15 COn=0.817418233 COnP=0.802468719 COnPOff=0.619877147
+infer test [  1/100] song 401
+infer test [  2/100] song 402
+infer test [  3/100] song 403
+infer test [  4/100] song 404
+infer test [  5/100] song 405
+infer test [  6/100] song 406
+infer test [  7/100] song 407
+infer test [  8/100] song 408
+infer test [  9/100] song 409
+infer test [ 10/100] song 410
+infer test [ 11/100] song 411
+infer test [ 12/100] song 412
+infer test [ 13/100] song 413
+infer test [ 14/100] song 414
+infer test [ 15/100] song 415
+infer test [ 16/100] song 416
+infer test [ 17/100] song 417
+infer test [ 18/100] song 418
+infer test [ 19/100] song 419
+infer test [ 20/100] song 420
+infer test [ 21/100] song 421
+infer test [ 22/100] song 422
+infer test [ 23/100] song 423
+infer test [ 24/100] song 424
+infer test [ 25/100] song 425
+infer test [ 26/100] song 426
+infer test [ 27/100] song 427
+infer test [ 28/100] song 428
+infer test [ 29/100] song 429
+infer test [ 30/100] song 430
+infer test [ 31/100] song 431
+infer test [ 32/100] song 432
+infer test [ 33/100] song 433
+infer test [ 34/100] song 434
+infer test [ 35/100] song 435
+infer test [ 36/100] song 436
+infer test [ 37/100] song 437
+infer test [ 38/100] song 438
+infer test [ 39/100] song 439
+infer test [ 40/100] song 440
+infer test [ 41/100] song 441
+infer test [ 42/100] song 442
+infer test [ 43/100] song 443
+infer test [ 44/100] song 444
+infer test [ 45/100] song 445
+infer test [ 46/100] song 446
+infer test [ 47/100] song 447
+infer test [ 48/100] song 448
+infer test [ 49/100] song 449
+infer test [ 50/100] song 450
+infer test [ 51/100] song 451
+infer test [ 52/100] song 452
+infer test [ 53/100] song 453
+infer test [ 54/100] song 454
+infer test [ 55/100] song 455
+infer test [ 56/100] song 456
+infer test [ 57/100] song 457
+infer test [ 58/100] song 458
+infer test [ 59/100] song 459
+infer test [ 60/100] song 460
+infer test [ 61/100] song 461
+infer test [ 62/100] song 462
+infer test [ 63/100] song 463
+infer test [ 64/100] song 464
+infer test [ 65/100] song 465
+infer test [ 66/100] song 466
+infer test [ 67/100] song 467
+infer test [ 68/100] song 468
+infer test [ 69/100] song 469
+infer test [ 70/100] song 470
+infer test [ 71/100] song 471
+infer test [ 72/100] song 472
+infer test [ 73/100] song 473
+infer test [ 74/100] song 474
+infer test [ 75/100] song 475
+infer test [ 76/100] song 476
+infer test [ 77/100] song 477
+infer test [ 78/100] song 478
+infer test [ 79/100] song 479
+infer test [ 80/100] song 480
+infer test [ 81/100] song 481
+infer test [ 82/100] song 482
+infer test [ 83/100] song 483
+infer test [ 84/100] song 484
+infer test [ 85/100] song 485
+infer test [ 86/100] song 486
+infer test [ 87/100] song 487
+infer test [ 88/100] song 488
+infer test [ 89/100] song 489
+infer test [ 90/100] song 490
+infer test [ 91/100] song 491
+infer test [ 92/100] song 492
+infer test [ 93/100] song 493
+infer test [ 94/100] song 494
+infer test [ 95/100] song 495
+infer test [ 96/100] song 496
+infer test [ 97/100] song 497
+infer test [ 98/100] song 498
+infer test [ 99/100] song 499
+infer test [100/100] song 500
+infer test done in 39.5s
+TEST on=0.40 fr=0.45 off=0.15 COn=0.802667829 COnP=0.775409316 COnPOff=0.588178931

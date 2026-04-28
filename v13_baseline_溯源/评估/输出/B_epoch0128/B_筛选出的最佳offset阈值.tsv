@@ -1,0 +1,2 @@
+criterion	onset_thresh	frame_thresh	offset_thresh	COn_f1	COnP_f1	COnPOff_f1	COn_plus_COnP	sum_all
+best_val_COnPOff_fixed_best_COnP_onset_frame	0.40	0.45	0.15	0.817418233	0.802468719	0.619877147	1.619886952	2.239764099
